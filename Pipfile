@@ -1,0 +1,28 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+requests = "*"
+django = "*"
+whitenoise = "*"
+gunicorn = "*"
+flask = "*"
+fontawesome-free = "*"
+pyodbc = "*"
+pandas = "*"
+psycopg2 = "*"
+django-tastypie = "*"
+pylint-django = "*"
+django-database-view = "*"
+django-view-table = "*"
+django-cors-headers = "*"
+heroku = "*"
+
+[dev-packages]
+pylint = "*"
+autopep8 = "*"
+
+[requires]
+python_version = "3.9"
