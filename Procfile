@@ -1,1 +1,1 @@
-web: gunicon PyDemo.wsgi
+web: gunicorn PyDemo.wsgi
