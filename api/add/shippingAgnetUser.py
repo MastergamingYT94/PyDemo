@@ -1,4 +1,4 @@
-from django.http.response import JsonResponse
+from django.shortcuts import render
 from PyCommerce.models import shippingAgentUser
 from abc import ABC, abstractmethod
 
@@ -12,12 +12,11 @@ class IAddShippingAgentUser(ABC):
 class ShippingAgentUser():
     def shipping_agent_user(self, request):
         if request.method == "POST":
-            get = request.POST.get
-
-            shippingAgentUser.objects.create(
-                UserId=get('UserId'),
-                ShippingAgentId=get('ShippingAgentId'))
-            return JsonResponse(request.POST, safe=False)
+            saveRecord = shippingAgentUser()
+            saveRecord.UserId = request.POST.get("UserId")
+            saveRecord.ShippingAgentId = request.POST.get("ShippingAgentId")
+            saveRecord.save()
+        return render(request)
 
 
 add_shipping_agent_user = ShippingAgentUser().shipping_agent_user

@@ -1,4 +1,4 @@
-from django.http.response import JsonResponse
+from django.shortcuts import render
 from PyCommerce.models import vendors
 from abc import ABC, abstractmethod
 
@@ -12,19 +12,17 @@ class IAddVendor(ABC):
 class Vendor():
     def vendor(self, request):
         if request.method == "POST":
-            get = request.POST.get
-
-            vendors.objects.create(
-                NameA=get('NameA'),
-                NameL=get('NameL'),
-                Adress1=get('Adress1'),
-                Adress2=get('Adress2'),
-                Phone=get('Phone'),
-                Email=get('Email'),
-                Password=get('Password'),
-                PostCode=get('PostCode'),
-            )
-            return JsonResponse(request.POST, safe=False)
+            saveRecord = vendors()
+            saveRecord.NameA = request.POST.get("NameA")
+            saveRecord.NameL = request.POST.get("NameL")
+            saveRecord.Adress1 = request.POST.get("Adress1")
+            saveRecord.Adress2 = request.POST.get("Adress2")
+            saveRecord.Phone = request.POST.get("Phone")
+            saveRecord.Email = request.POST.get("Email")
+            saveRecord.Password = request.POST.get("Password")
+            saveRecord.PostCode = request.POST.get("PostCode")
+            saveRecord.save()
+        return render(request)
 
 
 add_vendor = Vendor().vendor

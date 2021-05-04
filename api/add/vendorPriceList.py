@@ -1,4 +1,4 @@
-from django.http.response import JsonResponse
+from django.shortcuts import render
 from PyCommerce.models import vendorPriceList
 from abc import ABC, abstractmethod
 
@@ -12,15 +12,13 @@ class IAddPriceList(ABC):
 class PriceList():
     def price_list(self, request):
         if request.method == "POST":
-            get = request.POST.get
-
-            vendorPriceList.objects.create(
-                VendorId=get('VendorId'),
-                ProductId=get('ProductId'),
-                CountryId=get('CountryId'),
-                Price=get('Price')
-            )
-            return JsonResponse(request.POST, safe=False)
+            saveRecord = vendorPriceList()
+            saveRecord.VendorId = request.POST.get("VendorId")
+            saveRecord.ProductId = request.POST.get("ProductId")
+            saveRecord.CountryId = request.POST.get("CountryId")
+            saveRecord.Price = request.POST.get("Price")
+            saveRecord.save()
+        return render(request)
 
 
 add_price_list = PriceList().price_list

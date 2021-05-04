@@ -1,4 +1,4 @@
-from django.http.response import JsonResponse
+from django.shortcuts import render
 from PyCommerce.models import category
 from abc import ABC, abstractmethod
 
@@ -12,16 +12,14 @@ class IAddBrand(ABC):
 class Category():
     def category(self, request):
         if request.method == "POST":
-            get = request.POST.get
-
-            category.objects.create(
-                MainCategoryId=get('MainCategoryId'),
-                NameA=get('NameA'),
-                NameL=get('NameL'),
-                Level=get('Level'),
-                ImageUrl=get('ImageUrl'),
-            )
-            return JsonResponse(request.POST, safe=False)
+            saveRecord = category()
+            saveRecord.MainCategoryId = request.POST.get("MainCategoryId")
+            saveRecord.NameL = request.POST.get("NameL")
+            saveRecord.NameA = request.POST.get("NameA")
+            saveRecord.Level = request.POST.get("Level")
+            saveRecord.ImageUrl = request.POST.get("ImageUrl")
+            saveRecord.save()
+        return render(request)
 
 
 add_category = Category().category
