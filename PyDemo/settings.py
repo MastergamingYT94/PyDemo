@@ -26,11 +26,11 @@ SECRET_KEY = 'xdiw%jm!3b12hck0cewbu*vh+3)nibz%v3i^$*d^j4d_#m!ght'
 DEBUG = True
 
 ALLOWED_HOSTS = ['http://localhost:4200',
-                 '127.0.0.1', 'pycommerceapp.herokuapp.com', 'https://pycommerceapp.herokuapp.com/']
+                 '127.0.0.1', 'pycommerceapp.herokuapp.com', 'http://pycommerceapp.herokuapp.com/']
 CORS_ORIGIN_ALLOW_ALL = False
 CORS_ORIGIN_WHITELIST = (
     'http://localhost:4200',
-    'https://pycommerceapp.herokuapp.com/'
+    'http://pycommerceapp.herokuapp.com/'
 )
 
 OPTIONS = {
