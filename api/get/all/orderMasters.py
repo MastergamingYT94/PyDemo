@@ -13,9 +13,9 @@ class IGetOrderMaster(ABC):
 class OrderMaster():
     def order_master(self, request):
         if request.method == 'GET':
-            sanitizer = OrderMasterResource(
+            orderMasterSerializer = OrderMasterResource(
                 orderMaster.objects.all(), many=True)
-            return JsonResponse(sanitizer.data, safe=False)
+            return JsonResponse(orderMasterSerializer.data, safe=False)
 
 
 get_order_masters = OrderMaster().order_master

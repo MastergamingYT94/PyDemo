@@ -13,9 +13,9 @@ class IGetSpecificationValueCounts(ABC):
 class SpecificationValueCounts():
     def specification_value_counts(self, request):
         if request.method == 'GET':
-            sanitizer = SpecificationValueCountsResource(
+            specificationValueSerializer = SpecificationValueCountsResource(
                 specificationValueCounts.objects.all(), many=True)
-            return JsonResponse(sanitizer.data, safe=False)
+            return JsonResponse(specificationValueSerializer.data, safe=False)
 
 
 get_specification_value_counts = SpecificationValueCounts().specification_value_counts

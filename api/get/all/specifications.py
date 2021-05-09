@@ -13,9 +13,9 @@ class IGetSpecifications(ABC):
 class Specifications():
     def specifications(self, request):
         if request.method == 'GET':
-            sanitizer = SpecificationsResource(
+            specificationSerializer = SpecificationsResource(
                 specifications.objects.all(), many=True)
-            return JsonResponse(sanitizer.data, safe=False)
+            return JsonResponse(specificationSerializer.data, safe=False)
 
 
 get_specifications = Specifications().specifications

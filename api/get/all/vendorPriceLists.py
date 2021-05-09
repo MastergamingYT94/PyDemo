@@ -13,9 +13,9 @@ class IGetVendorPriceList(ABC):
 class VendorPriceList():
     def vendor_price_list(self, request):
         if request.method == 'GET':
-            sanitizer = VendorPriceListResource(
+            vendorPriceListSerializer = VendorPriceListResource(
                 vendorPriceList.objects.all(), many=True)
-            return JsonResponse(sanitizer.data, safe=False)
+            return JsonResponse(vendorPriceListSerializer.data, safe=False)
 
 
 get_vendor_price_lists = VendorPriceList().vendor_price_list

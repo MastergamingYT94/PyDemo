@@ -13,9 +13,9 @@ class IGetInventoryBalance(ABC):
 class InventoryBalance():
     def inventory_balance(self, request):
         if request.method == 'GET':
-            sanitizer = InventoryBalanceResource(
+            inventoryBalanceSerializer = InventoryBalanceResource(
                 inventoryBalance.objects.all(), many=True)
-            return JsonResponse(sanitizer.data, safe=False)
+            return JsonResponse(inventoryBalanceSerializer.data, safe=False)
 
 
 get_inventory_balances = InventoryBalance().inventory_balance

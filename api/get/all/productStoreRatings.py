@@ -13,9 +13,9 @@ class IGetProductStoreRating(ABC):
 class ProductStoreRating():
     def product_store_rating(self, request):
         if request.method == 'GET':
-            sanitizer = ProductStoreRatingResource(
+            productStoreSerializer = ProductStoreRatingResource(
                 productStoreRating.objects.all(), many=True)
-            return JsonResponse(sanitizer.data, safe=False)
+            return JsonResponse(productStoreSerializer.data, safe=False)
 
 
 get_product_store_ratings = ProductStoreRating().product_store_rating

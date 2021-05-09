@@ -13,8 +13,8 @@ class IGetOrders(ABC):
 class Orders():
     def orders(self, request):
         if request.method == 'GET':
-            sanitizer = OrdersResource(orders.objects.all(), many=True)
-            return JsonResponse(sanitizer.data, safe=False)
+            orderSerializer = OrdersResource(orders.objects.all(), many=True)
+            return JsonResponse(orderSerializer.data, safe=False)
 
 
 get_orders = Orders().orders

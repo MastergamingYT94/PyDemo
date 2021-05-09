@@ -13,9 +13,9 @@ class IGetShippingAgent(ABC):
 class ShippingAgent():
     def shipping_agent(self, request):
         if request.method == 'GET':
-            sanitizer = ShippingAgentResource(
+            shippingAgentSerializer = ShippingAgentResource(
                 shippingAgent.objects.all(), many=True)
-            return JsonResponse(sanitizer.data, safe=False)
+            return JsonResponse(shippingAgentSerializer.data, safe=False)
 
 
 get_shipping_agents = ShippingAgent().shipping_agent

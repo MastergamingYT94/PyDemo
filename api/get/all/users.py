@@ -13,8 +13,8 @@ class IGetUsers(ABC):
 class Users():
     def users(self, request):
         if request.method == 'GET':
-            sanitizer = UsersResource(users.objects.all(), many=True)
-            return JsonResponse(sanitizer.data, safe=False)
+            usersSerializer = UsersResource(users.objects.all(), many=True)
+            return JsonResponse(usersSerializer.data, safe=False)
 
 
 get_users = Users().users

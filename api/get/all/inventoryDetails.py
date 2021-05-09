@@ -13,9 +13,9 @@ class IGetInventoryDetail(ABC):
 class InventoryDetail():
     def inventory_detail(self, request):
         if request.method == 'GET':
-            sanitizer = InventoryDetailResource(
+            inventoryDetailSerializer = InventoryDetailResource(
                 inventoryDetail.objects.all(), many=True)
-            return JsonResponse(sanitizer.data, safe=False)
+            return JsonResponse(inventoryDetailSerializer.data, safe=False)
 
 
 get_inventory_details = InventoryDetail().inventory_detail

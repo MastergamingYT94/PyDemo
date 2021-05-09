@@ -13,8 +13,9 @@ class IGetCategories(ABC):
 class Categories():
     def categories(self, request):
         if request.method == 'GET':
-            sanitizer = CategoryResource(category.objects.all(), many=True)
-            return JsonResponse(sanitizer.data, safe=False)
+            cartegorySerializer = CategoryResource(
+                category.objects.all(), many=True)
+            return JsonResponse(cartegorySerializer.data, safe=False)
 
 
 get_categories = Categories().categories

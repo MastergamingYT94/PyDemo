@@ -14,8 +14,9 @@ class Store():
     def store(self, request, id):
         request.method = "GET"
         if request.method == 'GET':
-            sanitizer = StoresResource(stores.objects.filter(pk=id), many=True)
-            return JsonResponse(sanitizer.data, safe=False)
+            storeSerializer = StoresResource(
+                stores.objects.filter(pk=id), many=True)
+            return JsonResponse(storeSerializer.data, safe=False)
 
 
 get_store = Store().store

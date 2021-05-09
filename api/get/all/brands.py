@@ -13,8 +13,8 @@ class IGetBrands(ABC):
 class Brands():
     def brands(self, request):
         if request.method == 'GET':
-            sanitizer = BrandsResource(brands.objects.all(), many=True)
-            return JsonResponse(sanitizer.data, safe=False)
+            brandSerializer = BrandsResource(brands.objects.all(), many=True)
+            return JsonResponse(brandSerializer.data, safe=False)
 
 
 get_brands = Brands().brands

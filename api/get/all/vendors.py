@@ -13,8 +13,9 @@ class IGetVendors(ABC):
 class Vendors():
     def vendors(self, request):
         if request.method == 'GET':
-            sanitizer = VendorsResource(vendors.objects.all(), many=True)
-            return JsonResponse(sanitizer.data, safe=False)
+            vendorSerializer = VendorsResource(
+                vendors.objects.all(), many=True)
+            return JsonResponse(vendorSerializer.data, safe=False)
 
 
 get_vendors = Vendors().vendors

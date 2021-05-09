@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.http.response import JsonResponse
 from PyCommerce.models import stores
 from abc import ABC, abstractmethod
 
@@ -12,18 +12,19 @@ class IAddStore(ABC):
 class Store():
     def store(self, request):
         if request.method == "POST":
-            saveRecord = stores()
-            saveRecord.VendorId = request.POST.get("VendorId")
-            saveRecord.NameA = request.POST.get("NameA")
-            saveRecord.NameL = request.POST.get("NameL")
-            saveRecord.email = request.POST.get("email")
-            saveRecord.Address = request.POST.get("Address")
-            saveRecord.CountryId = request.POST.get("CountryId")
-            saveRecord.City = request.POST.get("City")
-            saveRecord.MapLocation = request.POST.get("MapLocation")
-            saveRecord.ShippingAgentId = request.POST.get("ShippingAgentId")
-            saveRecord.save()
-        return render(request)
+            get = request.POST.get
+
+            stores.objects.create(
+                VendorId=get('VendorId'),
+                NameA=get('NameA'),
+                NameL=get('NameL'),
+                email=get('email'),
+                Address=get('Address'),
+                CountryId=get('CountryId'),
+                City=get('City'),
+                MapLocation=get('MapLocation'),
+                ShippingAgentId=get('ShippingAgentId'))
+            return JsonResponse(request.POST, safe=False)
 
 
 add_store = Store().store

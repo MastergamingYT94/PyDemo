@@ -14,9 +14,9 @@ class Product():
     def product(self, request, id):
         request.method = "GET"
         if request.method == 'GET':
-            sanitizer = ProductsResource(
+            productSerializer = ProductsResource(
                 products.objects.filter(pk=id), many=True)
-            return JsonResponse(sanitizer.data, safe=False)
+            return JsonResponse(productSerializer.data, safe=False)
 
 
 get_product = Product().product

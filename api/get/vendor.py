@@ -14,9 +14,9 @@ class Vendor():
     def vendor(self, request, id):
         request.method = "GET"
         if request.method == 'GET':
-            sanitizer = VendorsResource(
+            vendorSerializer = VendorsResource(
                 vendors.objects.filter(pk=id), many=True)
-            return JsonResponse(sanitizer.data, safe=False)
+            return JsonResponse(vendorSerializer.data, safe=False)
 
 
 get_vendor = Vendor().vendor

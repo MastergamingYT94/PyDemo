@@ -29,6 +29,10 @@ urlpatterns = [
     path('users/', users.get_users),
     path('vendorPriceList/', vendorPriceLists.get_vendor_price_lists),
     path('vendors/', vendors.get_vendors),
-    path('getHomeProducts/', homeProducts.get_home_products),
-    path('getHomeProducts/max', homeProducts.get_max_page),
+
+    path('getHomeProducts/page=<int:page>/specValue=<specValue>/search=<search>/category=<int:categoryId>',
+         homeProducts.get_home_products),
+    path('getMaxPage/specValue=<specValue>/search=<search>/category=<int:categoryId>',
+         homeProducts.get_max_page),
+    path('productNames/<search>', homeProducts.get_searched_products),
 ]

@@ -14,8 +14,9 @@ class User():
     def user(self, request, id):
         request.method = "GET"
         if request.method == 'GET':
-            sanitizer = UsersResource(users.objects.filter(pk=id), many=True)
-            return JsonResponse(sanitizer.data, safe=False)
+            userSerializer = UsersResource(
+                users.objects.filter(pk=id), many=True)
+            return JsonResponse(userSerializer.data, safe=False)
 
 
 get_user = User().user

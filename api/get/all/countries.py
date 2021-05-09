@@ -13,8 +13,9 @@ class IGetCountries(ABC):
 class Countries():
     def countries(self, request):
         if request.method == 'GET':
-            sanitizer = CountriesResource(countries.objects.all(), many=True)
-            return JsonResponse(sanitizer.data, safe=False)
+            countrySerializer = CountriesResource(
+                countries.objects.all(), many=True)
+            return JsonResponse(countrySerializer.data, safe=False)
 
 
 get_countries = Countries().countries

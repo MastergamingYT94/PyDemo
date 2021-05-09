@@ -13,8 +13,9 @@ class IGetProducts(ABC):
 class Products():
     def products(self, request):
         if request.method == 'GET':
-            sanitizer = ProductsResource(products.objects.all(), many=True)
-            return JsonResponse(sanitizer.data, safe=False)
+            productSerializer = ProductsResource(
+                products.objects.all(), many=True)
+            return JsonResponse(productSerializer.data, safe=False)
 
 
 get_products = Products().products

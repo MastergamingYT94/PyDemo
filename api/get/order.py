@@ -14,8 +14,9 @@ class Order():
     def order(self, request, id):
         request.method = "GET"
         if request.method == 'GET':
-            sanitizer = OrdersResource(orders.objects.filter(pk=id), many=True)
-            return JsonResponse(sanitizer.data, safe=False)
+            orderSerializer = OrdersResource(
+                orders.objects.filter(pk=id), many=True)
+            return JsonResponse(orderSerializer.data, safe=False)
 
 
 get_order = Order().order

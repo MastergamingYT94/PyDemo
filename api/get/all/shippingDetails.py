@@ -13,9 +13,9 @@ class IGetShippingDetails(ABC):
 class ShippingDetails():
     def shipping_details(self, request):
         if request.method == 'GET':
-            sanitizer = ShippingDetailsResource(
+            shippingDetailsSerializer = ShippingDetailsResource(
                 shippingDetails.objects.all(), many=True)
-            return JsonResponse(sanitizer.data, safe=False)
+            return JsonResponse(shippingDetailsSerializer.data, safe=False)
 
 
 get_shipping_details = ShippingDetails.shipping_details

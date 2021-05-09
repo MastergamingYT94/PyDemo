@@ -13,9 +13,9 @@ class IGetTransactionType(ABC):
 class TransactionType():
     def transaction_type(self, request):
         if request.method == 'GET':
-            sanitizer = TransactionTypeResource(
+            transactionTypeSerializer = TransactionTypeResource(
                 transactionType.objects.all(), many=True)
-            return JsonResponse(sanitizer.data, safe=False)
+            return JsonResponse(transactionTypeSerializer.data, safe=False)
 
 
 get_transaction_types = TransactionType().transaction_type

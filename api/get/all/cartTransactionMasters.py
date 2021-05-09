@@ -13,9 +13,9 @@ class IGetCartTransactionMaster(ABC):
 class CartTransactionMaster():
     def cart_transaction_master(self, request):
         if request.method == 'GET':
-            sanitizer = CartTransactionMasterResource(
+            cartSerializer = CartTransactionMasterResource(
                 cartTransactionMaster.objects.all(), many=True)
-            return JsonResponse(sanitizer.data, safe=False)
+            return JsonResponse(cartSerializer.data, safe=False)
 
 
 get_cart_transaction_masters = CartTransactionMaster().cart_transaction_master

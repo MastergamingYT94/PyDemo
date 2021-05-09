@@ -14,9 +14,9 @@ class Category():
     def category(self, request, id):
         request.method = "GET"
         if request.method == 'GET':
-            sanitizer = CategoryResource(
+            categorySerializer = CategoryResource(
                 category.objects.filter(pk=id), many=True)
-            return JsonResponse(sanitizer.data, safe=False)
+            return JsonResponse(categorySerializer.data, safe=False)
 
 
 get_category = Category().category

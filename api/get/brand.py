@@ -14,8 +14,9 @@ class Brand():
     def brand(self, request, id):
         request.method = "GET"
         if request.method == 'GET':
-            sanitizer = BrandsResource(brands.objects.filter(pk=id), many=True)
-            return JsonResponse(sanitizer.data, safe=False)
+            brandSerializer = BrandsResource(
+                brands.objects.get(Id=id))
+            return JsonResponse(brandSerializer.data, safe=False)
 
 
 get_brand = Brand().brand
