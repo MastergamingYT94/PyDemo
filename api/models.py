@@ -1,6 +1,6 @@
+from api.get.items.storeItems import vendorName, shippingAgentName
 from PyCommerce.models import brands, cartTransaction, cartTransactionMaster, category, countries, inventoryBalance, inventoryDetail, orderMaster, orderStatus, orders, productSpecifications, productStoreRating, products, shippingAgent, shippingAgentUser, shippingDetails, specificationValueCounts, specifications, storeShippingAgent, stores, transactionType, users, vendorPriceList, vendors, getHomeProducts
 from rest_framework import serializers
-import math
 
 
 class BrandsResource(serializers.ModelSerializer):
@@ -128,10 +128,19 @@ class StoreShippingAgentResource(serializers.ModelSerializer):
 
 
 class StoresResource(serializers.ModelSerializer):
+    VendorName = serializers.SerializerMethodField('vendorName')
+    ShippingAgentName = serializers.SerializerMethodField('shippingAgentName')
+
+    def vendorName(self, request):
+        return vendorName()
+
+    def shippingAgentName(self, request):
+        return shippingAgentName()
+
     class Meta:
         model = stores
-        fields = ['Id', 'VendorId', 'NameA', 'NameL', 'email', 'Address',
-                  'CountryId', 'City', 'MapLocation', 'ShippingAgentId']
+        fields = ['Id', 'VendorId', 'VendorName', 'NameA', 'NameL', 'email', 'Address',
+                  'CountryId', 'City', 'MapLocation', 'ShippingAgentName', 'ShippingAgentId']
 
 
 class TransactionTypeResource(serializers.ModelSerializer):

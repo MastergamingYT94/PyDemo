@@ -1,6 +1,7 @@
-from django.http.response import JsonResponse
+from django.shortcuts import render
 from PyCommerce.models import shippingAgentUser
 from abc import ABC, abstractmethod
+from django.views.decorators.csrf import csrf_exempt
 
 
 class IAddShippingAgentUser(ABC):
@@ -10,14 +11,14 @@ class IAddShippingAgentUser(ABC):
 
 
 class ShippingAgentUser():
+    @csrf_exempt
     def shipping_agent_user(self, request):
         if request.method == "POST":
-            get = request.POST.get
-
-            shippingAgentUser.objects.create(
-                UserId=get('UserId'),
-                ShippingAgentId=get('ShippingAgentId'))
-            return JsonResponse(request.POST, safe=False)
+            result = shippingAgentUser()
+            result.UserId = request.POST.get("UserId")
+            result.ShippingAgentId = request.POST.get("ShippingAgentId")
+            result.save()
+            return render(request)
 
 
 add_shipping_agent_user = ShippingAgentUser().shipping_agent_user

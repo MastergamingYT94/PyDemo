@@ -1,6 +1,7 @@
-from django.http.response import JsonResponse
+from django.shortcuts import render
 from PyCommerce.models import products
 from abc import ABC, abstractmethod
+from django.views.decorators.csrf import csrf_exempt
 
 
 class IAddProduct(ABC):
@@ -10,20 +11,18 @@ class IAddProduct(ABC):
 
 
 class Product():
+    @csrf_exempt
     def product(self, request):
         if request.method == "POST":
-            get = request.POST.get
-
-            products.objects.create(
-                NameA=get('NameA'),
-                NameL=get('NameL'),
-                ImageUrl=get('ImageUrl'),
-                ImageUrl6=get('ImageUrl'),
-                ImageUrl7=get('ImageUrl7'),
-                CategoryId=get('CategoryId'),
-                BrandId=get('BrandId'),
-                Description=get('Description'))
-            return JsonResponse(request.POST, safe=False)
+            result = products()
+            result.ImageUrl = request.POST.get("ImageUrl")
+            result.ImageUrl6 = request.POST.get("ImageUrl6")
+            result.ImageUrl7 = request.POST.get("ImageUrl7")
+            result.CategoryId = request.POST.get("CategoryId")
+            result.BrandId = request.POST.get("BrandId")
+            result.Description = request.POST.get("Description")
+            result.save()
+            return render(request)
 
 
 add_product = Product().product

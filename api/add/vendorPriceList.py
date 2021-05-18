@@ -1,6 +1,7 @@
-from django.http.response import JsonResponse
+from django.shortcuts import render
 from PyCommerce.models import vendorPriceList
 from abc import ABC, abstractmethod
+from django.views.decorators.csrf import csrf_exempt
 
 
 class IAddPriceList(ABC):
@@ -10,17 +11,16 @@ class IAddPriceList(ABC):
 
 
 class PriceList():
+    @csrf_exempt
     def price_list(self, request):
         if request.method == "POST":
-            get = request.POST.get
-
-            vendorPriceList.objects.create(
-                VendorId=get('VendorId'),
-                ProductId=get('ProductId'),
-                CountryId=get('CountryId'),
-                Price=get('Price')
-            )
-            return JsonResponse(request.POST, safe=False)
+            result = vendorPriceList()
+            result.VendorId = request.POST.get("VendorId")
+            result.ProductId = request.POST.get("ProductId")
+            result.CountryId = request.POST.get("CountryId")
+            result.Price = request.POST.get("Price")
+            result.save()
+            return render(request)
 
 
 add_price_list = PriceList().price_list

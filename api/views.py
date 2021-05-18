@@ -5,10 +5,8 @@ from django.contrib import messages
 
 def InsertBrand(request):
     if request.method == 'POST':
-        saveRecord = brands()
-        saveRecord.NameA = request.POST.get("NameA")
-        saveRecord.NameL = request.POST.get("NameL")
-        saveRecord.save()
-        return render(request)
-    else:
+        result = brands()
+        result.NameA = request.POST.get("NameA")
+        result.NameL = request.POST.get("NameL")
+        result.save()
         return render(request)

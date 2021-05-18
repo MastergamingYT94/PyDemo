@@ -13,6 +13,7 @@ class IGetStores(ABC):
 class Stores():
     def stores(self, request):
         if request.method == 'GET':
+
             storeSerializer = StoresResource(stores.objects.all(), many=True)
             return JsonResponse(storeSerializer.data, safe=False)
 

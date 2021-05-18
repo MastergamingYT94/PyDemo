@@ -1,12 +1,7 @@
-from django.http.response import JsonResponse
+from django.shortcuts import render
 from PyCommerce.models import brands
 from abc import ABC, abstractmethod
-from django.contrib import messages
-from django.shortcuts import render
-from django.views.decorators.csrf import csrf_exempt, csrf_protect
-from rest_framework.parsers import JSONParser
-from rest_framework import serializers
-from api.models import BrandsResource
+from django.views.decorators.csrf import csrf_exempt
 
 
 class IAddBrand(ABC):
@@ -18,15 +13,12 @@ class IAddBrand(ABC):
 class Brand():
     @csrf_exempt
     def brand(self, request):
-        print(request.method)
-
         if request.method == "POST":
-            brand_Data = JSONParser().parse(request)
-            brand_Serializer = BrandsResource(data=brand_Data)
-            print(brand_Serializer)
-            if brand_Serializer.is_valid():
-                brand_Serializer.save()
-                return JsonResponse("Saved Successfully", safe=False)
+            result = brands()
+            result.NameA = request.POST.get("NameA")
+            result.NameL = request.POST.get("NameL")
+            result.save()
+            return render(request)
 
 
 add_brand = Brand().brand

@@ -60,13 +60,13 @@ class GetHomeProducts(IGetHomeProducts):
                 categoryNames = [(category.Id, category.NameL)
                                  for category in categories]
                 List = []
-                for p in productNames:
-                    for c in categoryNames:
+                for p in set(productNames):
+                    for c in set(categoryNames):
                         if p[0] == c[0]:
                             List.append(
                                 {'ProductName': p[1], 'CategoryName': c[1]})
 
-        return JsonResponse(List, safe=False)
+        return JsonResponse(List[:10], safe=False)
 
     def get_max_page(self, request, specValue='null', search='null', categoryId=0):
         if request.method == 'GET':
@@ -91,7 +91,6 @@ class GetHomeProducts(IGetHomeProducts):
             List = []
             for page in range(1, maxPageNumber + 1):
                 List.append(page)
-            print(List)
 
             return JsonResponse(List, safe=False)
 
