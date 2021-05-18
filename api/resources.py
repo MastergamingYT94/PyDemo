@@ -1,133 +1,133 @@
 from api.get.items.storeItems import vendorName, shippingAgentName
-from PyCommerce.models import brands, cartTransaction, cartTransactionMaster, category, countries, inventoryBalance, inventoryDetail, orderMaster, orderStatus, orders, productSpecifications, productStoreRating, products, shippingAgent, shippingAgentUser, shippingDetails, specificationValueCounts, specifications, storeShippingAgent, stores, transactionType, users, vendorPriceList, vendors, getHomeProducts
+from PyCommerce.models import Brands, CartTransactions, CartTransactionMasters, Categories, Countries, InventoryBalances, InventoryDetails, OrderMasters, OrderStatus, Orders, ProductSpecifications, ProductStoreRatings, Products, ShippingAgents, ShippingAgentUsers, ShippingDetails, SpecificationValueCounts, Specifications, StoreShippingAgents, Stores, TransactionTypes, Users, VendorPriceLists, Vendors, GetHomeProducts
 from rest_framework import serializers
 
 
-class BrandsResource(serializers.ModelSerializer):
+class brandsResource(serializers.ModelSerializer):
     class Meta:
-        model = brands
+        model = Brands
         fields = ['Id', 'NameA', 'NameL']
 
 
-class CartTransactionResource(serializers.ModelSerializer):
+class cartTransactionsResource(serializers.ModelSerializer):
     class Meta:
-        model = cartTransaction
+        model = CartTransactions
         fields = ['Id', 'ProductId', 'MasterId',
                   'StoreId', 'Quantity', 'IsOrdered']
 
 
-class CartTransactionMasterResource(serializers.ModelSerializer):
+class cartTransactionMastersResource(serializers.ModelSerializer):
     class Meta:
-        model = cartTransactionMaster
+        model = CartTransactionMasters
         fields = ['Id', 'DateCreated']
 
 
-class CategoryResource(serializers.ModelSerializer):
+class categoriesResource(serializers.ModelSerializer):
     class Meta:
-        model = category
+        model = Categories
         fields = ['Id', 'MainCategoryId',
                   'NameA', 'NameL', 'Level', 'ImageUrl']
 
 
-class CountriesResource(serializers.ModelSerializer):
+class countriesResource(serializers.ModelSerializer):
     class Meta:
-        model = countries
+        model = Countries
         fields = ['Id', 'NameA', 'NameL', 'Symbol']
 
 
-class InventoryBalanceResource(serializers.ModelSerializer):
+class inventoryBalancesResource(serializers.ModelSerializer):
     class Meta:
-        model = inventoryBalance
+        model = InventoryBalances
         fields = ['Id', 'StoreId', 'ProductId', 'QuantityBalance']
 
 
-class InventoryDetailResource(serializers.ModelSerializer):
+class inventoryDetailsResource(serializers.ModelSerializer):
     class Meta:
-        model = inventoryDetail
+        model = InventoryDetails
         fields = ['Id', 'TransType', 'TransDate',
                   'StoreId', 'ProductId', 'Quantity']
 
 
-class OrderMasterResource(serializers.ModelSerializer):
+class orderMastersResource(serializers.ModelSerializer):
     class Meta:
-        model = orderMaster
+        model = OrderMasters
         fields = ['Id', 'cartId', 'UserId', 'DateCreated',
                   'ShippingAdress', 'OrderStatusId']
 
 
-class OrderStatusResource(serializers.ModelSerializer):
+class orderStatusResource(serializers.ModelSerializer):
     class Meta:
-        model = orderStatus
+        model = OrderStatus
         fields = ['Id', 'Code', 'StatusNameA', 'StatusNameL']
 
 
-class OrdersResource(serializers.ModelSerializer):
+class ordersResource(serializers.ModelSerializer):
     class Meta:
-        model = orders
+        model = Orders
         fields = ['ProductId', 'StoreId', 'cartId', 'MasterId', 'UserId', 'Quantity',
                   'ShippingAgentId', 'UnitPrice', 'TotalPrice', 'isDelivered', 'MapLocation',
                   'DeliveredByUserId', 'Latitude', 'Longitude']
 
 
-class ProductsResource(serializers.ModelSerializer):
+class productsResource(serializers.ModelSerializer):
     class Meta:
-        model = products
+        model = Products
         fields = ['Id', 'NameA', 'NameL', 'ImageUrl', 'ImageUrl6',
                   'ImageUrl7', 'CategoryId', 'BrandId', 'Description']
 
 
-class ProductSpecificationsResource(serializers.ModelSerializer):
+class productSpecificationsResource(serializers.ModelSerializer):
     class Meta:
-        model = productSpecifications
+        model = ProductSpecifications
         fields = ['Id', 'CategoryId', 'ProductId', 'SpecificationId',
                   'SpecificationName', 'SpecificationValue', 'ShowInFilter']
 
 
-class ProductStoreRatingResource(serializers.ModelSerializer):
+class productStoreRatingsResource(serializers.ModelSerializer):
     class Meta:
-        model = productStoreRating
+        model = ProductStoreRatings
         fields = ['Id', 'ProductId', 'StoreId', 'UserId',
                   'RatingId', 'ProductReview']
 
 
-class ShippingAgentResource(serializers.ModelSerializer):
+class ShippingAgentsResource(serializers.ModelSerializer):
     class Meta:
-        model = shippingAgent
+        model = ShippingAgents
         fields = ['Id', 'NameA', 'NameL', 'Adress1', 'Adress2',
                   'Phone', 'Email', 'Password', 'PostCode']
 
 
-class ShippingAgentUserResource(serializers.ModelSerializer):
+class shippingAgentUsersResource(serializers.ModelSerializer):
     class Meta:
-        model = shippingAgentUser
+        model = ShippingAgentUsers
         fields = ['Id', 'UserId', 'ShippingAgentId']
 
 
-class ShippingDetailsResource(serializers.ModelSerializer):
+class shippingDetailsResource(serializers.ModelSerializer):
     class Meta:
-        model = shippingDetails
+        model = ShippingDetails
         fields = ['Id', 'ShippingAgentId', 'OrderId', 'DeliveryNotes']
 
 
-class SpecificationValueCountsResource(serializers.ModelSerializer):
+class specificationValueCountsResource(serializers.ModelSerializer):
     class Meta:
-        model = specificationValueCounts
+        model = SpecificationValueCounts
         fields = ['SpecificationValue', 'SpecificationCount']
 
 
-class SpecificationsResource(serializers.ModelSerializer):
+class specificationsResource(serializers.ModelSerializer):
     class Meta:
-        model = specifications
+        model = Specifications
         fields = ['Id', 'NameA', 'NameL', 'ShowInFilter']
 
 
-class StoreShippingAgentResource(serializers.ModelSerializer):
+class storeShippingAgentsResource(serializers.ModelSerializer):
     class Meta:
-        model = storeShippingAgent
+        model = StoreShippingAgents
         fields = ['Id', 'StoreId', 'ShippingAgentId']
 
 
-class StoresResource(serializers.ModelSerializer):
+class storesResource(serializers.ModelSerializer):
     VendorName = serializers.SerializerMethodField('vendorName')
     ShippingAgentName = serializers.SerializerMethodField('shippingAgentName')
 
@@ -138,39 +138,39 @@ class StoresResource(serializers.ModelSerializer):
         return shippingAgentName()
 
     class Meta:
-        model = stores
+        model = Stores
         fields = ['Id', 'VendorId', 'VendorName', 'NameA', 'NameL', 'email', 'Address',
                   'CountryId', 'City', 'MapLocation', 'ShippingAgentName', 'ShippingAgentId']
 
 
-class TransactionTypeResource(serializers.ModelSerializer):
+class transactionTypesResource(serializers.ModelSerializer):
     class Meta:
-        model = transactionType
+        model = TransactionTypes
         fields = ['Id', 'Code', 'NameA', 'NameL']
 
 
-class UsersResource(serializers.ModelSerializer):
+class usersResource(serializers.ModelSerializer):
     class Meta:
-        model = users
+        model = Users
         fields = ['Id', 'NameA', 'NameL', 'Email', 'Password', 'City']
 
 
-class VendorPriceListResource(serializers.ModelSerializer):
+class vendorPriceListsResource(serializers.ModelSerializer):
     class Meta:
-        model = vendorPriceList
+        model = VendorPriceLists
         fields = ['Id', 'VendorId', 'ProductId', 'CountryId', 'Price']
 
 
-class VendorsResource(serializers.ModelSerializer):
+class vendorsResource(serializers.ModelSerializer):
     class Meta:
-        model = vendors
+        model = Vendors
         fields = ['Id', 'NameA', 'NameL', 'Adress1', 'Adress2',
                   'Phone', 'Email', 'Password', 'PostCode']
 
 
-class GetHomeProductsResource(serializers.ModelSerializer):
+class getHomeProductsResource(serializers.ModelSerializer):
     class Meta:
-        model = getHomeProducts
+        model = GetHomeProducts
         fields = ['Id', 'StoreId', 'ProductId', 'QuantityBalance', 'ProductName',
                   'StoreName', 'ImageUrl', 'ImageUrl6', 'ImageUrl7', 'Description', 'Price',
                   'Currency', 'CategoryId', 'PageNumber', 'FiveStarsCount', 'FourStarsCount',

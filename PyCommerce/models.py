@@ -2,15 +2,13 @@ from django.db import models
 # Create your models here.
 
 
-class brands(models.Model):
-
+class Brands(models.Model):
     Id = models.AutoField(primary_key=True)
     NameA = models.CharField(max_length=2550)
     NameL = models.CharField(max_length=2550)
 
 
-class cartTransaction(models.Model):
-
+class CartTransactions(models.Model):
     Id = models.AutoField(primary_key=True)
     ProductId = models.IntegerField()
     MasterId = models.IntegerField()
@@ -19,14 +17,12 @@ class cartTransaction(models.Model):
     IsOrdered = models.IntegerField()
 
 
-class cartTransactionMaster(models.Model):
-
+class CartTransactionMasters(models.Model):
     Id = models.AutoField(primary_key=True)
     DateCreated = models.DateTimeField()
 
 
-class category(models.Model):
-
+class Categories(models.Model):
     Id = models.AutoField(primary_key=True)
     MainCategoryId = models.IntegerField()
     NameA = models.CharField(max_length=2550)
@@ -35,24 +31,21 @@ class category(models.Model):
     ImageUrl = models.CharField(max_length=2550)
 
 
-class countries(models.Model):
-
+class Countries(models.Model):
     Id = models.AutoField(primary_key=True)
     NameA = models.CharField(max_length=2550)
     NameL = models.CharField(max_length=2550)
     Symbol = models.CharField(max_length=2550)
 
 
-class inventoryBalance(models.Model):
-
+class InventoryBalances(models.Model):
     Id = models.AutoField(primary_key=True)
     StoreId = models.IntegerField()
     ProductId = models.IntegerField()
     QuantityBalance = models.FloatField()
 
 
-class inventoryDetail(models.Model):
-
+class InventoryDetails(models.Model):
     Id = models.AutoField(primary_key=True)
     TransType = models.IntegerField()
     TransDate = models.DateField()
@@ -61,8 +54,7 @@ class inventoryDetail(models.Model):
     Quantity = models.FloatField()
 
 
-class orderMaster(models.Model):
-
+class OrderMasters(models.Model):
     Id = models.AutoField(primary_key=True)
     cartId = models.IntegerField()
     UserId = models.IntegerField()
@@ -71,16 +63,14 @@ class orderMaster(models.Model):
     OrderStatusId = models.IntegerField()
 
 
-class orderStatus(models.Model):
-
+class OrderStatus(models.Model):
     Id = models.AutoField(primary_key=True)
     Code = models.IntegerField()
     StatusNameA = models.CharField(max_length=2550)
     StatusNameL = models.CharField(max_length=2550)
 
 
-class orders(models.Model):
-
+class Orders(models.Model):
     Id = models.AutoField(primary_key=True)
     ProductId = models.IntegerField()
     StoreId = models.IntegerField()
@@ -98,8 +88,7 @@ class orders(models.Model):
     Longitude = models.CharField(max_length=2550)
 
 
-class products(models.Model):
-
+class Products(models.Model):
     Id = models.AutoField(primary_key=True)
     NameA = models.CharField(max_length=2550)
     NameL = models.CharField(max_length=2550)
@@ -111,8 +100,7 @@ class products(models.Model):
     Description = models.CharField(max_length=2550)
 
 
-class productSpecifications(models.Model):
-
+class ProductSpecifications(models.Model):
     Id = models.AutoField(primary_key=True)
     CategoryId = models.IntegerField()
     ProductId = models.IntegerField()
@@ -122,8 +110,7 @@ class productSpecifications(models.Model):
     ShowInFilter = models.IntegerField()
 
 
-class productStoreRating(models.Model):
-
+class ProductStoreRatings(models.Model):
     Id = models.AutoField(primary_key=True)
     ProductId = models.IntegerField()
     StoreId = models.IntegerField()
@@ -132,8 +119,7 @@ class productStoreRating(models.Model):
     ProductReview = models.CharField(max_length=2550)
 
 
-class shippingAgent(models.Model):
-
+class ShippingAgents(models.Model):
     Id = models.AutoField(primary_key=True)
     NameA = models.CharField(max_length=2550)
     NameL = models.CharField(max_length=2550)
@@ -145,44 +131,38 @@ class shippingAgent(models.Model):
     PostCode = models.CharField(max_length=2550)
 
 
-class shippingAgentUser(models.Model):
-
+class ShippingAgentUsers(models.Model):
     Id = models.AutoField(primary_key=True)
     UserId = models.IntegerField()
     ShippingAgentId = models.IntegerField()
 
 
-class shippingDetails(models.Model):
-
+class ShippingDetails(models.Model):
     Id = models.AutoField(primary_key=True)
     ShippingAgentId = models.IntegerField()
     OrderId = models.IntegerField()
     DeliveryNotes = models.CharField(max_length=2550)
 
 
-class specificationValueCounts(models.Model):
-
+class SpecificationValueCounts(models.Model):
     SpecificationValue = models.CharField(max_length=2550, primary_key=True)
     SpecificationCount = models.IntegerField()
 
 
-class specifications(models.Model):
-
+class Specifications(models.Model):
     Id = models.AutoField(primary_key=True)
     NameA = models.CharField(max_length=2550)
     NameL = models.CharField(max_length=2550)
     ShowInFilter = models.IntegerField()
 
 
-class storeShippingAgent(models.Model):
-
+class StoreShippingAgents(models.Model):
     Id = models.IntegerField(primary_key=True)
     StoreId = models.IntegerField()
     ShippingAgentId = models.IntegerField()
 
 
-class stores(models.Model):
-
+class Stores(models.Model):
     Id = models.AutoField(primary_key=True)
     VendorId = models.IntegerField()
     NameA = models.CharField(max_length=2550)
@@ -195,16 +175,14 @@ class stores(models.Model):
     ShippingAgentId = models.IntegerField()
 
 
-class transactionType(models.Model):
-
+class TransactionTypes(models.Model):
     Id = models.AutoField(primary_key=True)
     Code = models.IntegerField()
     NameA = models.CharField(max_length=2550)
     NameL = models.CharField(max_length=2550)
 
 
-class users(models.Model):
-
+class Users(models.Model):
     Id = models.AutoField(primary_key=True)
     NameA = models.CharField(max_length=2550)
     NameL = models.CharField(max_length=2550)
@@ -213,8 +191,7 @@ class users(models.Model):
     City = models.CharField(max_length=2550)
 
 
-class vendorPriceList(models.Model):
-
+class VendorPriceLists(models.Model):
     Id = models.AutoField(primary_key=True)
     VendorId = models.IntegerField()
     ProductId = models.IntegerField()
@@ -222,8 +199,7 @@ class vendorPriceList(models.Model):
     Price = models.FloatField()
 
 
-class vendors(models.Model):
-
+class Vendors(models.Model):
     Id = models.AutoField(primary_key=True)
     NameA = models.CharField(max_length=2550)
     NameL = models.CharField(max_length=2550)
@@ -235,8 +211,7 @@ class vendors(models.Model):
     PostCode = models.CharField(max_length=2550)
 
 
-class getHomeProducts(models.Model):
-
+class GetHomeProducts(models.Model):
     Id = models.AutoField(primary_key=True)
     StoreId = models.IntegerField()
     ProductId = models.IntegerField()

@@ -1,4 +1,4 @@
-from PyCommerce.models import getHomeProducts
+from PyCommerce.models import GetHomeProducts
 from django.core.paginator import Paginator
 from django.shortcuts import render
 import math
@@ -7,7 +7,7 @@ import requests
 url = "http://angulardemo.somee.com/Products"
 
 
-HomeProducts = getHomeProducts.objects.all().order_by("StoreId")
+HomeProducts = GetHomeProducts.objects.all().order_by("StoreId")
 getAllCategory = requests.get(url + "/GetAllCategory")
 getSubCategory = requests.get(url + "/GetSubCategory")
 
