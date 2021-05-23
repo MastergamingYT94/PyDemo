@@ -97,7 +97,9 @@ DATABASES = {
     }
 }
 
-
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
+DATE_INPUT_FORMATS = ['%d/%m/%Y']
+DATE_FORMAT = r'd/m/Y'
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 

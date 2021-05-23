@@ -2,217 +2,219 @@ from django.db import models
 # Create your models here.
 
 
-class Brands(models.Model):
-    Id = models.AutoField(primary_key=True)
-    NameA = models.CharField(max_length=2550)
+class brands(models.Model):
+    NameA = models.CharField(max_length=2550, blank=True)
     NameL = models.CharField(max_length=2550)
 
 
-class CartTransactions(models.Model):
-    Id = models.AutoField(primary_key=True)
-    ProductId = models.IntegerField()
-    MasterId = models.IntegerField()
-    StoreId = models.IntegerField()
-    Quantity = models.FloatField()
-    IsOrdered = models.IntegerField()
-
-
-class CartTransactionMasters(models.Model):
-    Id = models.AutoField(primary_key=True)
+class cartTransactionMasters(models.Model):
     DateCreated = models.DateTimeField()
 
 
-class Categories(models.Model):
-    Id = models.AutoField(primary_key=True)
-    MainCategoryId = models.IntegerField()
-    NameA = models.CharField(max_length=2550)
+class categories(models.Model):
+    MainCategoryId = models.ForeignKey(
+        'self', on_delete=models.DO_NOTHING, db_column='MainCategoryId', blank=True, db_constraint=False)
+    NameA = models.CharField(max_length=2550, blank=True)
     NameL = models.CharField(max_length=2550)
     Level = models.IntegerField()
-    ImageUrl = models.CharField(max_length=2550)
+    ImageUrl = models.CharField(max_length=2550, blank=True)
 
 
-class Countries(models.Model):
-    Id = models.AutoField(primary_key=True)
-    NameA = models.CharField(max_length=2550)
+class countries(models.Model):
+    NameA = models.CharField(max_length=2550, blank=True)
     NameL = models.CharField(max_length=2550)
     Symbol = models.CharField(max_length=2550)
 
 
-class InventoryBalances(models.Model):
-    Id = models.AutoField(primary_key=True)
-    StoreId = models.IntegerField()
-    ProductId = models.IntegerField()
-    QuantityBalance = models.FloatField()
-
-
-class InventoryDetails(models.Model):
-    Id = models.AutoField(primary_key=True)
-    TransType = models.IntegerField()
-    TransDate = models.DateField()
-    StoreId = models.IntegerField()
-    ProductId = models.IntegerField()
-    Quantity = models.FloatField()
-
-
-class OrderMasters(models.Model):
-    Id = models.AutoField(primary_key=True)
-    cartId = models.IntegerField()
-    UserId = models.IntegerField()
-    DateCreated = models.DateTimeField()
-    ShippingAdress = models.CharField(max_length=2550)
-    OrderStatusId = models.IntegerField()
-
-
-class OrderStatus(models.Model):
-    Id = models.AutoField(primary_key=True)
+class orderStatus(models.Model):
     Code = models.IntegerField()
-    StatusNameA = models.CharField(max_length=2550)
+    StatusNameA = models.CharField(max_length=2550, blank=True)
     StatusNameL = models.CharField(max_length=2550)
 
 
-class Orders(models.Model):
-    Id = models.AutoField(primary_key=True)
-    ProductId = models.IntegerField()
-    StoreId = models.IntegerField()
-    cartId = models.IntegerField()
-    MasterId = models.IntegerField()
-    UserId = models.IntegerField()
-    Quantity = models.FloatField()
-    ShippingAgentId = models.IntegerField()
-    UnitPrice = models.FloatField()
-    TotalPrice = models.FloatField()
-    isDelivered = models.IntegerField()
-    MapLocation = models.CharField(max_length=2550)
-    DeliveredByUserId = models.IntegerField()
-    Latitude = models.CharField(max_length=2550)
-    Longitude = models.CharField(max_length=2550)
-
-
-class Products(models.Model):
-    Id = models.AutoField(primary_key=True)
-    NameA = models.CharField(max_length=2550)
-    NameL = models.CharField(max_length=2550)
-    ImageUrl = models.CharField(max_length=2550)
-    ImageUrl6 = models.CharField(max_length=2550)
-    ImageUrl7 = models.CharField(max_length=2550)
-    CategoryId = models.IntegerField()
-    BrandId = models.IntegerField()
-    Description = models.CharField(max_length=2550)
-
-
-class ProductSpecifications(models.Model):
-    Id = models.AutoField(primary_key=True)
-    CategoryId = models.IntegerField()
-    ProductId = models.IntegerField()
-    SpecificationId = models.IntegerField()
-    SpecificationName = models.CharField(max_length=2550)
-    SpecificationValue = models.CharField(max_length=2550)
-    ShowInFilter = models.IntegerField()
-
-
-class ProductStoreRatings(models.Model):
-    Id = models.AutoField(primary_key=True)
-    ProductId = models.IntegerField()
-    StoreId = models.IntegerField()
-    UserId = models.IntegerField()
-    RatingId = models.IntegerField()
-    ProductReview = models.CharField(max_length=2550)
-
-
-class ShippingAgents(models.Model):
-    Id = models.AutoField(primary_key=True)
-    NameA = models.CharField(max_length=2550)
+class shippingAgents(models.Model):
+    NameA = models.CharField(max_length=2550, blank=True)
     NameL = models.CharField(max_length=2550)
     Adress1 = models.CharField(max_length=2550)
-    Adress2 = models.CharField(max_length=2550)
-    Phone = models.CharField(max_length=2550)
+    Adress2 = models.CharField(max_length=2550, blank=True)
+    Phone = models.CharField(max_length=2550, blank=True)
     Email = models.CharField(max_length=2550)
     Password = models.CharField(max_length=2550)
-    PostCode = models.CharField(max_length=2550)
+    PostCode = models.CharField(max_length=2550, blank=True)
+
+    def __str__(self):
+        return self.NameL
 
 
-class ShippingAgentUsers(models.Model):
-    Id = models.AutoField(primary_key=True)
-    UserId = models.IntegerField()
-    ShippingAgentId = models.IntegerField()
-
-
-class ShippingDetails(models.Model):
-    Id = models.AutoField(primary_key=True)
-    ShippingAgentId = models.IntegerField()
-    OrderId = models.IntegerField()
-    DeliveryNotes = models.CharField(max_length=2550)
-
-
-class SpecificationValueCounts(models.Model):
+class specificationValueCounts(models.Model):
     SpecificationValue = models.CharField(max_length=2550, primary_key=True)
     SpecificationCount = models.IntegerField()
 
 
-class Specifications(models.Model):
-    Id = models.AutoField(primary_key=True)
-    NameA = models.CharField(max_length=2550)
+class specifications(models.Model):
+    NameA = models.CharField(max_length=2550, blank=True)
     NameL = models.CharField(max_length=2550)
     ShowInFilter = models.IntegerField()
 
 
-class StoreShippingAgents(models.Model):
-    Id = models.IntegerField(primary_key=True)
-    StoreId = models.IntegerField()
-    ShippingAgentId = models.IntegerField()
-
-
-class Stores(models.Model):
-    Id = models.AutoField(primary_key=True)
-    VendorId = models.IntegerField()
-    NameA = models.CharField(max_length=2550)
-    NameL = models.CharField(max_length=2550)
-    email = models.CharField(max_length=2550)
-    Address = models.CharField(max_length=2550)
-    CountryId = models.IntegerField()
-    City = models.CharField(max_length=2550)
-    MapLocation = models.CharField(max_length=2550)
-    ShippingAgentId = models.IntegerField()
-
-
-class TransactionTypes(models.Model):
-    Id = models.AutoField(primary_key=True)
+class transactionTypes(models.Model):
     Code = models.IntegerField()
-    NameA = models.CharField(max_length=2550)
+    NameA = models.CharField(max_length=2550, blank=True)
     NameL = models.CharField(max_length=2550)
 
 
-class Users(models.Model):
-    Id = models.AutoField(primary_key=True)
-    NameA = models.CharField(max_length=2550)
+class users(models.Model):
+    NameA = models.CharField(max_length=2550, blank=True)
     NameL = models.CharField(max_length=2550)
     Email = models.CharField(max_length=2550)
     Password = models.CharField(max_length=2550)
     City = models.CharField(max_length=2550)
 
 
-class VendorPriceLists(models.Model):
-    Id = models.AutoField(primary_key=True)
-    VendorId = models.IntegerField()
-    ProductId = models.IntegerField()
-    CountryId = models.IntegerField()
+class vendors(models.Model):
+    NameA = models.CharField(max_length=2550, blank=True)
+    NameL = models.CharField(max_length=2550)
+    Adress1 = models.CharField(max_length=2550)
+    Adress2 = models.CharField(max_length=2550, blank=True)
+    Phone = models.CharField(max_length=2550, blank=True)
+    Email = models.CharField(max_length=2550)
+    Password = models.CharField(max_length=2550)
+    PostCode = models.CharField(max_length=2550, blank=True)
+
+
+class products(models.Model):
+    NameA = models.CharField(max_length=2550, blank=True)
+    NameL = models.CharField(max_length=2550)
+    ImageUrl = models.CharField(max_length=12550, blank=True)
+    ImageUrl6 = models.CharField(max_length=12550, blank=True)
+    ImageUrl7 = models.CharField(max_length=12550, blank=True)
+    Description = models.CharField(max_length=2550, blank=True)
+    BrandId = models.ForeignKey(
+        brands, on_delete=models.DO_NOTHING,  db_column='BrandId')
+    CategoryId = models.ForeignKey(
+        categories, on_delete=models.DO_NOTHING,  db_column='CategoryId')
+
+
+class vendorPriceLists(models.Model):
+    VendorId = models.ForeignKey(
+        vendors, on_delete=models.DO_NOTHING,  db_column='VendorId')
+    ProductId = models.ForeignKey(
+        products, on_delete=models.DO_NOTHING,  db_column='ProductId')
+    CountryId = models.ForeignKey(
+        countries, on_delete=models.DO_NOTHING,  db_column='CountryId')
     Price = models.FloatField()
 
 
-class Vendors(models.Model):
-    Id = models.AutoField(primary_key=True)
-    NameA = models.CharField(max_length=2550)
+class productSpecifications(models.Model):
+    SpecificationName = models.CharField(max_length=2550)
+    SpecificationValue = models.CharField(max_length=2550)
+    ShowInFilter = models.IntegerField()
+    CategoryId = models.ForeignKey(
+        categories, on_delete=models.DO_NOTHING,  db_column='CategoryId')
+    ProductId = models.ForeignKey(
+        products, on_delete=models.DO_NOTHING,  db_column='ProductId')
+    SpecificationId = models.ForeignKey(
+        specifications, on_delete=models.DO_NOTHING,  db_column='SpecificationId')
+
+
+class stores(models.Model):
+    NameA = models.CharField(max_length=2550, blank=True)
     NameL = models.CharField(max_length=2550)
-    Adress1 = models.CharField(max_length=2550)
-    Adress2 = models.CharField(max_length=2550)
-    Phone = models.CharField(max_length=2550)
     Email = models.CharField(max_length=2550)
-    Password = models.CharField(max_length=2550)
-    PostCode = models.CharField(max_length=2550)
+    Address = models.CharField(max_length=2550, blank=True)
+    City = models.CharField(max_length=2550)
+    Latitude = models.CharField(max_length=2550, blank=True)
+    Longitude = models.CharField(max_length=2550, blank=True)
+    CountryId = models.ForeignKey(
+        countries, on_delete=models.DO_NOTHING,  db_column='CountryId')
+    VendorId = models.ForeignKey(
+        vendors, on_delete=models.DO_NOTHING,  db_column='VendorId')
+    ShippingAgentId = models.ForeignKey(
+        shippingAgents, on_delete=models.DO_NOTHING,  db_column='ShippingAgentId')
 
 
-class GetHomeProducts(models.Model):
-    Id = models.AutoField(primary_key=True)
+class storeShippingAgents(models.Model):
+    StoreId = models.ForeignKey(
+        stores, on_delete=models.DO_NOTHING, db_column='StoreId')
+    ShippingAgentId = models.ForeignKey(
+        shippingAgents, on_delete=models.DO_NOTHING,  db_column='ShippingAgentId')
+
+
+class shippingAgentUsers(models.Model):
+    UserId = models.ForeignKey(
+        users, on_delete=models.DO_NOTHING,  db_column='UserId')
+    ShippingAgentId = models.ForeignKey(
+        shippingAgents, on_delete=models.DO_NOTHING,  db_column='ShippingAgentId')
+
+
+class inventoryBalances(models.Model):
+    StoreId = models.ForeignKey(
+        stores, on_delete=models.DO_NOTHING, db_column='StoreId')
+    ProductId = models.ForeignKey(
+        products, on_delete=models.DO_NOTHING,  db_column='ProductId')
+    QuantityBalance = models.FloatField()
+
+
+class inventoryDetails(models.Model):
+    StoreId = models.ForeignKey(
+        stores, on_delete=models.DO_NOTHING, db_column='StoreId')
+    ProductId = models.ForeignKey(
+        products, on_delete=models.DO_NOTHING,  db_column='ProductId')
+    Quantity = models.FloatField(blank=False)
+
+
+class orderMasters(models.Model):
+    cartId = models.IntegerField()
+    DateCreated = models.DateTimeField()
+    ShippingAdress = models.CharField(max_length=2550, blank=True)
+    UserId = models.IntegerField()
+    OrderStatusId = models.IntegerField()
+
+
+class cartTransactions(models.Model):
+    Quantity = models.FloatField()
+    IsOrdered = models.IntegerField()
+    ProductId = models.IntegerField()
+    MasterId = models.IntegerField()
+    StoreId = models.IntegerField()
+
+
+class orders(models.Model):
+    UnitPrice = models.FloatField()
+    TotalPrice = models.FloatField()
+    isDelivered = models.IntegerField(blank=True)
+    Latitude = models.CharField(max_length=2550, blank=True)
+    Longitude = models.CharField(max_length=2550, blank=True)
+    cartId = models.IntegerField()
+    Quantity = models.FloatField()
+    DeliveredByUserId = models.IntegerField()
+    ProductId = models.IntegerField()
+    StoreId = models.IntegerField()
+    MasterId = models.IntegerField()
+    UserId = models.IntegerField()
+    ShippingAgentId = models.IntegerField()
+
+
+class shippingDetails(models.Model):
+    DeliveryNotes = models.CharField(max_length=2550, blank=True)
+    OrderId = models.ForeignKey(
+        orders, on_delete=models.DO_NOTHING, db_column='OrderId')
+    ShippingAgentId = models.ForeignKey(
+        shippingAgents, on_delete=models.DO_NOTHING,  db_column='ShippingAgentId')
+
+
+class productStoreRatings(models.Model):
+    RatingId = models.IntegerField()
+    ProductReview = models.CharField(max_length=2550, blank=True)
+    ProductId = models.ForeignKey(
+        products, on_delete=models.DO_NOTHING,  db_column='ProductId')
+    StoreId = models.ForeignKey(
+        stores, on_delete=models.DO_NOTHING, db_column='StoreId')
+    UserId = models.ForeignKey(
+        users, on_delete=models.DO_NOTHING,  db_column='UserId')
+
+
+class getHomeProducts(models.Model):
     StoreId = models.IntegerField()
     ProductId = models.IntegerField()
     QuantityBalance = models.FloatField()
