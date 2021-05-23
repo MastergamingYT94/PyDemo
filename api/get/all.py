@@ -15,8 +15,8 @@ class AllData():
     def all(self, request, model):
         if request.method == 'GET':
             result = Model.__getattribute__(models, model)()
-            resource = Model.__getattribute__(resources, model + 'Resource')()
-            Serializer = resource(result.objects.all(), many=True)
+            resource = Model.__getattribute__(resources, model + 'Resource')
+            Serializer = resource(type(result).objects.all(), many=True)
             return JsonResponse(Serializer.data, safe=False)
 
 

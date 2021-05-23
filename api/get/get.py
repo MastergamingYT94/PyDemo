@@ -15,8 +15,8 @@ class Data():
     def data(self, request, model, id):
         if request.method == 'GET':
             result = Model.__getattribute__(models, model)()
-            resource = Model.__getattribute__(resources, model + 'Resource')()
-            Serializer = resource(result.objects.get(Id=id), many=True)
+            resource = Model.__getattribute__(resources, model + 'Resource')
+            Serializer = resource(type(result).objects.get(id=id), many=True)
             return JsonResponse(Serializer.data, safe=False)
 
 

@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 from django.core.paginator import Paginator
 from django.http.response import JsonResponse
 from api.resources import getHomeProductsResource
-from PyCommerce.models import GetHomeProducts, ProductSpecifications, Categories
+from PyCommerce.models import getHomeProducts, productSpecifications, categories
 import math
 
 
@@ -18,10 +18,10 @@ class IGetHomeProducts(ABC):
         pass
 
 
-class getHomeProducts(IGetHomeProducts):
+class GetHomeProducts(IGetHomeProducts):
     def get_home_products(self, request, page=1, specValue='null', search='null', categoryId=0):
         if request.method == 'GET':
-            homeProducts = GetHomeProducts.objects.all().order_by('StoreId')
+            homeProducts = getHomeProducts.objects.all().order_by('StoreId')
 
             if search != 'null':
                 homeProducts = homeProducts.filter(
@@ -29,9 +29,10 @@ class getHomeProducts(IGetHomeProducts):
 
             if specValue != 'null':
                 selectedValues = specValue.split(',')
-                productIds = ProductSpecifications.objects.all().filter(
+                productIds = productSpecifications.objects.all().filter(
                     SpecificationValue__in=selectedValues)
-                ids = [product.ProductId for product in productIds]
+                ids = [product for product in productIds.values_list(
+                    'ProductId', flat=True)]
                 homeProducts = homeProducts.filter(ProductId__in=ids)
 
             if categoryId != 0:
@@ -51,14 +52,15 @@ class getHomeProducts(IGetHomeProducts):
     def get_searched_products(self, request, search='null'):
         if request.method == 'GET':
             if search != 'null':
-                products = GetHomeProducts.objects.all().filter(ProductName__contains=search)
-                categoryIds = [product.CategoryId for product in products]
-                categories = Categories.objects.all().filter(Id__in=categoryIds)
+                products = getHomeProducts.objects.all().filter(ProductName__contains=search)
+                categoryIds = [product for product in products.values_list(
+                    'CategoryId', flat=True)]
+                Categories = categories.objects.all().filter(id__in=categoryIds)
 
                 productNames = [(product.CategoryId, product.ProductName)
                                 for product in products]
-                categoryNames = [(category.Id, category.NameL)
-                                 for category in categories]
+                categoryNames = [(category.id, category.NameL)
+                                 for category in Categories]
                 List = []
                 for p in set(productNames):
                     for c in set(categoryNames):
@@ -70,7 +72,7 @@ class getHomeProducts(IGetHomeProducts):
 
     def get_max_page(self, request, specValue='null', search='null', categoryId=0):
         if request.method == 'GET':
-            homeProducts = GetHomeProducts.objects.all().order_by('StoreId')
+            homeProducts = getHomeProducts.objects.all().order_by('StoreId')
 
             if search != 'null':
                 homeProducts = homeProducts.filter(
@@ -78,9 +80,10 @@ class getHomeProducts(IGetHomeProducts):
 
             if specValue != 'null':
                 selectedValues = specValue.split(',')
-                productIds = ProductSpecifications.objects.all().filter(
+                productIds = productSpecifications.objects.all().filter(
                     SpecificationValue__in=selectedValues)
-                ids = [product.ProductId for product in productIds]
+                ids = [product for product in productIds.values_list(
+                    'ProductId', flat=True)]
                 homeProducts = homeProducts.filter(ProductId__in=ids)
 
             if categoryId != 0:
@@ -95,6 +98,6 @@ class getHomeProducts(IGetHomeProducts):
             return JsonResponse(List, safe=False)
 
 
-get_home_products = getHomeProducts().get_home_products
-get_searched_products = getHomeProducts().get_searched_products
-get_max_page = getHomeProducts().get_max_page
+get_home_products = GetHomeProducts().get_home_products
+get_searched_products = GetHomeProducts().get_searched_products
+get_max_page = GetHomeProducts().get_max_page
