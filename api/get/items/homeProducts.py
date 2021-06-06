@@ -51,17 +51,17 @@ class GetHomeProducts(IGetHomeProducts):
 
     def get_searched_products(self, request, search='null'):
         if request.method == 'GET':
-            if search != 'null':
+            List = []
+            if search != 'null' or search != None:
                 products = getHomeProducts.objects.all().filter(ProductName__contains=search)
                 categoryIds = [product for product in products.values_list(
                     'CategoryId', flat=True)]
                 Categories = categories.objects.all().filter(id__in=categoryIds)
 
-                productNames = [(product.CategoryId, product.ProductName)
+                productNames = [(product.CategoryId.id, product.ProductName)
                                 for product in products]
                 categoryNames = [(category.id, category.NameL)
                                  for category in Categories]
-                List = []
                 for p in set(productNames):
                     for c in set(categoryNames):
                         if p[0] == c[0]:

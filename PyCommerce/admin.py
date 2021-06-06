@@ -1,4 +1,4 @@
-from .models import brands, cartTransactions, cartTransactionMasters, categories, countries, getHomeProducts, inventoryBalances, inventoryDetails, orderMasters, orderStatus, orders, productSpecifications, productStoreRatings, products, shippingAgents, shippingAgentUsers, shippingDetails, specificationValueCounts, specifications, storeShippingAgents, stores, transactionTypes, users, vendorPriceLists, vendors
+from .models import brands, cartTransactions, cartTransactionMasters, categories, countries, getHomeProducts, inventoryBalances, inventoryDetails, orderMasters, orderStatus, orders, productSpecifications, productStoreRatings, products, shippingAgents, shippingAgentUsers, shippingDetails, specifications, storeShippingAgents, stores, transactionTypes, users, vendorPriceLists, vendors
 from django.contrib import admin
 
 
@@ -34,7 +34,7 @@ class InventoryDetailAdmin(admin.ModelAdmin):
 
 class OrderMasterAdmin(admin.ModelAdmin):
     list_display = ('id', 'cartId', 'UserId', 'DateCreated',
-                    'ShippingAdress', 'OrderStatusId')
+                    'ShippingAddress', 'OrderStatusId')
 
 
 class OrderStatusAdmin(admin.ModelAdmin):
@@ -49,7 +49,7 @@ class OrdersAdmin(admin.ModelAdmin):
 
 class ProductsAdmin(admin.ModelAdmin):
     list_display = ('id', 'NameA', 'NameL', 'CategoryId',
-                    'BrandId')
+                    'Image', 'Image2', 'Image3', 'Image4', 'BrandId')
 
 
 class ProductSpecificationsAdmin(admin.ModelAdmin):
@@ -63,7 +63,7 @@ class ProductStoreRatingAdmin(admin.ModelAdmin):
 
 
 class ShippingAgentAdmin(admin.ModelAdmin):
-    list_display = ('NameA', 'NameL', 'Adress1', 'Adress2',
+    list_display = ('NameA', 'NameL', 'Address1', 'Address2',
                     'Phone', 'Email', 'Password', 'PostCode')
 
 
@@ -73,10 +73,6 @@ class ShippingAgentUserAdmin(admin.ModelAdmin):
 
 class ShippingDetailsAdmin(admin.ModelAdmin):
     list_display = ('id', 'ShippingAgentId', 'OrderId', 'DeliveryNotes')
-
-
-class SpecificationValueCountsAdmin(admin.ModelAdmin):
-    list_display = ('SpecificationValue', 'SpecificationCount')
 
 
 class SpecificationsAdmin(admin.ModelAdmin):
@@ -105,13 +101,13 @@ class VendorPriceListAdmin(admin.ModelAdmin):
 
 
 class VendorsAdmin(admin.ModelAdmin):
-    list_display = ('id', 'NameA', 'NameL', 'Adress1', 'Adress2',
+    list_display = ('id', 'NameA', 'NameL', 'Address1', 'Address2',
                     'Phone', 'Email', 'Password', 'PostCode')
 
 
 class GetHomeProductsAdmin(admin.ModelAdmin):
     list_display = ('id', 'StoreId', 'ProductId', 'QuantityBalance', 'ProductName',
-                    'StoreName', 'ImageUrl', 'ImageUrl6', 'ImageUrl7', 'Description', 'Price',
+                    'StoreName', 'Image', 'Image2', 'Image3', 'Image4', 'Description', 'Price',
                     'Currency', 'CategoryId', 'PageNumber')
 
 
@@ -131,7 +127,6 @@ admin.site.register(productStoreRatings, ProductStoreRatingAdmin)
 admin.site.register(shippingAgents, ShippingAgentAdmin)
 admin.site.register(shippingAgentUsers, ShippingAgentUserAdmin)
 admin.site.register(shippingDetails, ShippingDetailsAdmin)
-admin.site.register(specificationValueCounts, SpecificationValueCountsAdmin)
 admin.site.register(specifications, SpecificationsAdmin)
 admin.site.register(storeShippingAgents, StoreShippingAgentAdmin)
 admin.site.register(stores, StoresAdmin)

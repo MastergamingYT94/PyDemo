@@ -1,15 +1,16 @@
 from PyCommerce.models import getHomeProducts
 from django.core.paginator import Paginator
 from django.shortcuts import render
+from django import template
+
 import math
 
 import requests
-url = "http://angulardemo.somee.com/Products"
-
+urls = "http://angulardemo.somee.com/Products"
 
 HomeProducts = getHomeProducts.objects.all().order_by("StoreId")
-getAllCategory = requests.get(url + "/GetAllCategory")
-getSubCategory = requests.get(url + "/GetSubCategory")
+getAllCategory = requests.get(urls + "/GetAllCategory")
+getSubCategory = requests.get(urls + "/GetSubCategory")
 
 product_name = [product.ProductName for product in HomeProducts]
 categories = [category for category in getAllCategory.json()]
@@ -19,6 +20,9 @@ subCategories = [sub for sub in getSubCategory.json()]
 def welcome(request):
     return render(request, 'products/welcome.html', {'Categories': categories,
                                                      'subCategories': subCategories, })
+
+
+register = template . Library()
 
 
 def home(request):
@@ -43,7 +47,7 @@ def home(request):
     maxPageNumber = len(Products) / 8
     maxPageNumber = math.ceil(maxPageNumber)
 
-    return render(request, 'products/welcome.html',
+    return render(request, 'products/home.html',
                   {
                       'Products':  products,
                       'Categories': categories,

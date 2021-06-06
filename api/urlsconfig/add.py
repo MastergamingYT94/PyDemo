@@ -1,8 +1,25 @@
-from api.add import update
 from django.urls import path
-from ..add import add
+from api.add import deliverOrder, deliveryNotes, user
+from ..add import add, cart, cartItem, authUser, order, rateProduct
+from ..update import quantity, update, images
+from ..delete import deleteCart, deleteItem
 
 urlpatterns = [
+    path('cartItem', cartItem.add_cart_item),
+    path('updateQuantity/<int:cartId>/<Quantity>',
+         quantity.update_cart_quantity),
+    path('shoppingCartMaster', cart.add_cart_master),
+    path('order/<int:cartId>/<int:userId>', order.add_order),
+    path('notes/<int:OrderId>/<int:UserId>', deliveryNotes.add_delivery_notes),
+    path('deliverOrder/<int:OrderId>/<int:UserId>', deliverOrder.deliver_order),
+    path('updateImages/<int:id>', images.update_images),
+    path('rateProduct', rateProduct.rate_product),
+
+    path('authUser', authUser.authenticate_user),
+    path('registerUser', user.register_user),
+
+    path('deleteCart/<int:cartId>', deleteCart.delete_cart),
+    path('deleteItem/<int:id>', deleteItem.delete_cart_item),
     path('<model>', add.add_data),
     path('<model>/<int:id>', update.update_data),
 ]

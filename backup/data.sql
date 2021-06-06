@@ -1511,3 +1511,109 @@ INSERT INTO "main"."PyCommerce_vendorpricelists" ("Id", "ProductId", "CountryId"
 INSERT INTO "main"."PyCommerce_vendorpricelists" ("Id", "ProductId", "CountryId", "Price", "VendorId") VALUES ('1033', '1108', '1', '15000.0', '1');
 
 INSERT INTO "main"."PyCommerce_vendors" ("Id", "NameA", "NameL", "Adress1", "Adress2", "Phone", "Email", "Password", "PostCode") VALUES ('1', '', 'Abdullah', '', '', '', 'abdullahmohamedezzat21@gmail.com', 'Budybudy7', '');
+
+
+CREATE VIEW GetHomeProducts AS
+
+SELECT        invBalance.Id, invBalance.StoreId, pro.Id AS ProductId, invBalance.QuantityBalance, pro.NameL AS ProductName, store.NameL AS StoreName, pro.ImageUrl, pro.ImageUrl6, pro.ImageUrl7, pro.Description, vendorPrice.Price, 
+                         Countries.Symbol AS Currency, pro.CategoryId, Vendors.NameL AS VendorName, (row_number() OVER (ORDER BY pro.Id) - 1) AS RowNum, (((row_number() OVER (ORDER BY pro.Id) - 1) / 8) + 1) AS PageNumber,
+						 ((SELECT COUNT (*) FROM PyCommerce_productstoreratings AS rating WHERE rating.ProductId = invBalance.ProductId and rating.StoreId = invBalance.StoreId and  rating.RatingId = 5) * 5) AS FiveStarsCount,
+						 ((SELECT COUNT (*) FROM PyCommerce_productstoreratings AS rating WHERE rating.ProductId = invBalance.ProductId and rating.StoreId = invBalance.StoreId and  rating.RatingId = 4) * 4) AS FourStarsCount,
+						 ((SELECT COUNT (*) FROM PyCommerce_productstoreratings AS rating WHERE rating.ProductId = invBalance.ProductId and rating.StoreId = invBalance.StoreId and  rating.RatingId = 3) * 3) AS ThreeStarsCount,
+						 ((SELECT COUNT (*) FROM PyCommerce_productstoreratings AS rating WHERE rating.ProductId = invBalance.ProductId and rating.StoreId = invBalance.StoreId and  rating.RatingId = 2) * 2) AS TwoStarsCount,
+						 (SELECT COUNT (*) FROM PyCommerce_productstoreratings AS rating WHERE rating.ProductId = invBalance.ProductId and rating.StoreId = invBalance.StoreId and  rating.RatingId = 1) AS OneStarsCount,
+						 ((SELECT COUNT (*) FROM PyCommerce_productstoreratings AS rating WHERE rating.ProductId = invBalance.ProductId and rating.StoreId = invBalance.StoreId ) * 5) AS MaxTotalRating,
+						 
+						 ROUND(
+							 ( ((SELECT COUNT (*) FROM PyCommerce_productstoreratings AS rating WHERE rating.ProductId = invBalance.ProductId and rating.StoreId = invBalance.StoreId and  rating.RatingId = 5) * 5)*1.0 + 
+						 ((SELECT COUNT (*) FROM PyCommerce_productstoreratings AS rating WHERE rating.ProductId = invBalance.ProductId and rating.StoreId = invBalance.StoreId and  rating.RatingId = 4) * 4)*1.0 +
+						 ((SELECT COUNT (*) FROM PyCommerce_productstoreratings AS rating WHERE rating.ProductId = invBalance.ProductId and rating.StoreId = invBalance.StoreId and  rating.RatingId = 3) * 3)*1.0 +
+						 ((SELECT COUNT (*) FROM PyCommerce_productstoreratings AS rating WHERE rating.ProductId = invBalance.ProductId and rating.StoreId = invBalance.StoreId and  rating.RatingId = 2) * 2)*1.0 +
+						 (SELECT COUNT (*) FROM PyCommerce_productstoreratings AS rating WHERE rating.ProductId = invBalance.ProductId and rating.StoreId = invBalance.StoreId and  rating.RatingId = 1)*1.0 ) /
+						 ((SELECT COUNT (*) FROM PyCommerce_productstoreratings AS rating WHERE rating.ProductId = invBalance.ProductId and rating.StoreId = invBalance.StoreId ) * 5)*1.0
+						 
+						 ,2) * 100 AS finalProductRating,
+						 
+						 ROUND(((
+							 ( ((SELECT COUNT (*) FROM PyCommerce_productstoreratings AS rating WHERE rating.ProductId = invBalance.ProductId and rating.StoreId = invBalance.StoreId and  rating.RatingId = 5) * 5)*1.0 + 
+						 ((SELECT COUNT (*) FROM PyCommerce_productstoreratings AS rating WHERE rating.ProductId = invBalance.ProductId and rating.StoreId = invBalance.StoreId and  rating.RatingId = 4) * 4)*1.0 +
+						 ((SELECT COUNT (*) FROM PyCommerce_productstoreratings AS rating WHERE rating.ProductId = invBalance.ProductId and rating.StoreId = invBalance.StoreId and  rating.RatingId = 3) * 3)*1.0 +
+						 ((SELECT COUNT (*) FROM PyCommerce_productstoreratings AS rating WHERE rating.ProductId = invBalance.ProductId and rating.StoreId = invBalance.StoreId and  rating.RatingId = 2) * 2)*1.0 +
+						 (SELECT COUNT (*) FROM PyCommerce_productstoreratings AS rating WHERE rating.ProductId = invBalance.ProductId and rating.StoreId = invBalance.StoreId and  rating.RatingId = 1)*1.0 ) /
+						 ((SELECT COUNT (*) FROM PyCommerce_productstoreratings AS rating WHERE rating.ProductId = invBalance.ProductId and rating.StoreId = invBalance.StoreId ) * 5)*1.0
+						 
+						 ) * 100) / 100, 2) * 5 AS OutOfFivestring
+
+
+						 
+FROM           PyCommerce_inventorybalances AS invBalance LEFT OUTER JOIN
+                        PyCommerce_products AS pro ON invBalance.ProductId = pro.Id LEFT OUTER JOIN
+                        PyCommerce_stores AS store ON invBalance.StoreId = store.Id LEFT OUTER JOIN
+                        PyCommerce_vendorpricelists AS vendorPrice ON vendorPrice.CountryId = store.CountryId AND vendorPrice.ProductId = pro.Id AND vendorPrice.VendorId = store.VendorId LEFT OUTER JOIN
+                        PyCommerce_countries AS Countries ON Countries.Id = store.CountryId LEFT OUTER JOIN
+                        PyCommerce_vendors AS Vendors ON Vendors.Id = store.VendorId
+						
+						
+						
+CREATE VIEW GetStarPercent AS
+
+SELECT     (row_number() OVER ()) AS id , pro.Id AS ProductId, invBalance.StoreId,
+                         
+						 (SELECT COUNT (*) FROM PyCommerce_productstoreratings AS rating WHERE rating.ProductId = invBalance.ProductId and rating.StoreId = invBalance.StoreId and  rating.RatingId = 5) AS FiveStarsCount,
+						 (SELECT COUNT (*) FROM PyCommerce_productstoreratings AS rating WHERE rating.ProductId = invBalance.ProductId and rating.StoreId = invBalance.StoreId and  rating.RatingId = 4) AS FourStarsCount,
+						 (SELECT COUNT (*) FROM PyCommerce_productstoreratings AS rating WHERE rating.ProductId = invBalance.ProductId and rating.StoreId = invBalance.StoreId and  rating.RatingId = 3) AS ThreeStarsCount,
+						 (SELECT COUNT (*) FROM PyCommerce_productstoreratings AS rating WHERE rating.ProductId = invBalance.ProductId and rating.StoreId = invBalance.StoreId and  rating.RatingId = 2) AS TwoStarsCount,
+						 (SELECT COUNT (*) FROM PyCommerce_productstoreratings AS rating WHERE rating.ProductId = invBalance.ProductId and rating.StoreId = invBalance.StoreId and  rating.RatingId = 1) AS OneStarCount,
+						 
+						 ROUND(((SELECT COUNT (*) FROM PyCommerce_productstoreratings AS rating WHERE rating.ProductId = invBalance.ProductId and rating.StoreId = invBalance.StoreId and  rating.RatingId = 5) * 1.0 / 
+						   (SELECT COUNT (*) FROM PyCommerce_productstoreratings AS rating WHERE rating.ProductId = invBalance.ProductId and rating.StoreId = invBalance.StoreId)) * 100, 2) AS FiveStarsPercent,
+						 ROUND(((SELECT COUNT (*) FROM PyCommerce_productstoreratings AS rating WHERE rating.ProductId = invBalance.ProductId and rating.StoreId = invBalance.StoreId and  rating.RatingId = 4) * 1.0 / 
+							(SELECT COUNT (*) FROM PyCommerce_productstoreratings AS rating WHERE rating.ProductId = invBalance.ProductId and rating.StoreId = invBalance.StoreId)) * 100, 2) AS FourStarsPercent,
+						 ROUND(((SELECT COUNT (*) FROM PyCommerce_productstoreratings AS rating WHERE rating.ProductId = invBalance.ProductId and rating.StoreId = invBalance.StoreId and  rating.RatingId = 3) * 1.0 / 
+						   (SELECT COUNT (*) FROM PyCommerce_productstoreratings AS rating WHERE rating.ProductId = invBalance.ProductId and rating.StoreId = invBalance.StoreId)) * 100, 2) AS ThreeStarsPercent,
+						 ROUND(((SELECT COUNT (*) FROM PyCommerce_productstoreratings AS rating WHERE rating.ProductId = invBalance.ProductId and rating.StoreId = invBalance.StoreId and  rating.RatingId = 2) * 1.0 / 
+						   (SELECT COUNT (*) FROM PyCommerce_productstoreratings AS rating WHERE rating.ProductId = invBalance.ProductId and rating.StoreId = invBalance.StoreId)) * 100, 2) AS TwoStarsPercent,
+						 ROUND(((SELECT COUNT (*) FROM PyCommerce_productstoreratings AS rating WHERE rating.ProductId = invBalance.ProductId and rating.StoreId = invBalance.StoreId and  rating.RatingId = 1) * 1.0 / 
+						   (SELECT COUNT (*) FROM PyCommerce_productstoreratings AS rating WHERE rating.ProductId = invBalance.ProductId and rating.StoreId = invBalance.StoreId)) * 100, 2) AS OneStarPercent,
+			
+						 
+						 ROUND((( ((SELECT COUNT (*) FROM PyCommerce_productstoreratings AS rating WHERE rating.ProductId = invBalance.ProductId and rating.StoreId = invBalance.StoreId and  rating.RatingId = 5) *5) *1.0 +
+						 ((SELECT COUNT (*) FROM PyCommerce_productstoreratings AS rating WHERE rating.ProductId = invBalance.ProductId and rating.StoreId = invBalance.StoreId and  rating.RatingId = 4) *4) *1.0 +
+						 ((SELECT COUNT (*) FROM PyCommerce_productstoreratings AS rating WHERE rating.ProductId = invBalance.ProductId and rating.StoreId = invBalance.StoreId and  rating.RatingId = 3) *3) *1.0 +
+						 ((SELECT COUNT (*) FROM PyCommerce_productstoreratings AS rating WHERE rating.ProductId = invBalance.ProductId and rating.StoreId = invBalance.StoreId and  rating.RatingId = 2) *2) *1.0 +
+						 (SELECT COUNT (*) FROM PyCommerce_productstoreratings AS rating WHERE rating.ProductId = invBalance.ProductId and rating.StoreId = invBalance.StoreId and  rating.RatingId = 1) *1.0 ) /
+						 ((SELECT COUNT (*) FROM PyCommerce_productstoreratings AS rating WHERE rating.ProductId = invBalance.ProductId and rating.StoreId = invBalance.StoreId) * 5) *100), 2) AS averageRating,
+						 
+						 
+						  ROUND( ((( ((SELECT COUNT (*) FROM PyCommerce_productstoreratings AS rating WHERE rating.ProductId = invBalance.ProductId and rating.StoreId = invBalance.StoreId and  rating.RatingId = 5) *5) *1.0 +
+						 ((SELECT COUNT (*) FROM PyCommerce_productstoreratings AS rating WHERE rating.ProductId = invBalance.ProductId and rating.StoreId = invBalance.StoreId and  rating.RatingId = 4) *4) *1.0 +
+						 ((SELECT COUNT (*) FROM PyCommerce_productstoreratings AS rating WHERE rating.ProductId = invBalance.ProductId and rating.StoreId = invBalance.StoreId and  rating.RatingId = 3) *3) *1.0 +
+						 ((SELECT COUNT (*) FROM PyCommerce_productstoreratings AS rating WHERE rating.ProductId = invBalance.ProductId and rating.StoreId = invBalance.StoreId and  rating.RatingId = 2) *2) *1.0 +
+						 (SELECT COUNT (*) FROM PyCommerce_productstoreratings AS rating WHERE rating.ProductId = invBalance.ProductId and rating.StoreId = invBalance.StoreId and  rating.RatingId = 1) *1.0 ) /
+						 ((SELECT COUNT (*) FROM PyCommerce_productstoreratings AS rating WHERE rating.ProductId = invBalance.ProductId and rating.StoreId = invBalance.StoreId) * 5) *100) / 100) *5, 1) AS OutOfFive,
+						 
+						 (SELECT COUNT (*) FROM PyCommerce_productstoreratings AS rating WHERE rating.ProductId = invBalance.ProductId and rating.StoreId = invBalance.StoreId) AS allReviewsCount
+
+		
+
+
+						 
+FROM           PyCommerce_inventorybalances AS invBalance LEFT OUTER JOIN
+                        PyCommerce_products AS pro ON invBalance.ProductId = pro.Id LEFT OUTER JOIN
+                        PyCommerce_stores AS store ON invBalance.StoreId = store.Id LEFT OUTER JOIN
+                        PyCommerce_vendorpricelists AS vendorPrice ON vendorPrice.CountryId = store.CountryId AND vendorPrice.ProductId = pro.Id AND vendorPrice.VendorId = store.VendorId LEFT OUTER JOIN
+                        PyCommerce_countries AS Countries ON Countries.Id = store.CountryId LEFT OUTER JOIN
+                        PyCommerce_vendors AS Vendors ON Vendors.Id = store.VendorId
+
+
+
+
+CREATE VIEW SpecificationValueCount AS
+
+SELECT DISTINCT (row_number() OVER ()) AS id, SpecificationId, SpecificationValue,
+                             (SELECT        COUNT(*) AS Expr1
+                               FROM            PyCommerce_inventorybalances AS InvBalance LEFT OUTER JOIN
+                                                         PyCommerce_productspecifications AS SubSpec ON InvBalance.ProductId = SubSpec.ProductId
+                               WHERE        (SubSpec.SpecificationValue = ProSpec.SpecificationValue) AND (SubSpec.CategoryId = ProSpec.CategoryId)) AS SpecificationCount, CategoryId
+FROM            PyCommerce_productspecifications AS ProSpec
+WHERE        (ShowInFilter = 1)						
