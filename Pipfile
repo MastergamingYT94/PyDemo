@@ -11,6 +11,11 @@ gunicorn = "*"
 pylint-django = "*"
 django-cors-headers = "*"
 djangorestframework = "*"
+django-googledrive-storage = "*"
+psycopg2-binary = "*"
+dj-database-url = "*"
+django-resized = "*"
+pillow = "*"
 
 [dev-packages]
 pylint = "*"
