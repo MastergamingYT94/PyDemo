@@ -101,8 +101,8 @@ DATABASES = {
 }
 
 
-# db_from_env = dj_database_url.config()
-# DATABASES['default'].update(db_from_env)
+db_from_env = dj_database_url.config()
+DATABASES['default'].update(db_from_env)
 
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 DATE_INPUT_FORMATS = ['%d/%m/%Y']
