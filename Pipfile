@@ -16,6 +16,7 @@ psycopg2-binary = "*"
 dj-database-url = "*"
 django-resized = "*"
 pillow = "*"
+django-heroku = "*"
 
 [dev-packages]
 pylint = "*"

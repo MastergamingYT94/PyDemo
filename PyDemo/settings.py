@@ -10,7 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
-import dj_database_url
+import django_heroku
 from pathlib import Path
 import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -100,9 +100,7 @@ DATABASES = {
     }
 }
 
-
-db_from_env = dj_database_url.config()
-DATABASES['default'].update(db_from_env)
+django_heroku.settings(locals())
 
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 DATE_INPUT_FORMATS = ['%d/%m/%Y']
