@@ -13,6 +13,7 @@ django-cors-headers = "*"
 djangorestframework = "*"
 dj-database-url = "*"
 django-resized = "*"
+psycopg2-binary = "*"
 
 [dev-packages]
 pylint = "*"
