@@ -54,8 +54,8 @@ INSTALLED_APPS = [
     'corsheaders',
 ]
 SITE_ID = 1
-SITE_URL = "http://127.0.0.1:8000"
-# SITE_URL = "http://pycommerceapp.herokuapp.com"
+# SITE_URL = "http://127.0.0.1:8000"
+SITE_URL = "http://pycommerceapp.herokuapp.com"
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
