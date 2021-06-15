@@ -231,7 +231,8 @@ class inventoryDetailsResource(serializers.ModelSerializer):
 
     class Meta:
         model = inventoryDetails
-        fields = ['id', 'StoreName', 'ProductName', 'Quantity']
+        fields = ['id', 'StoreId', 'ProductId',
+                  'StoreName', 'ProductName', 'Quantity']
 
 
 class orderMastersResource(serializers.ModelSerializer):
@@ -419,9 +420,14 @@ class productsResource(serializers.ModelSerializer):
 
 
 class productSpecificationsResource(serializers.ModelSerializer):
+    ProductName = serializers.SerializerMethodField('product_name')
+
+    def product_name(self, obj):
+        return obj.ProductId.NameL
+
     class Meta:
         model = productSpecifications
-        fields = ['id', 'CategoryId', 'ProductId', 'SpecificationId',
+        fields = ['id', 'CategoryId', 'ProductId', 'ProductName', 'SpecificationId',
                   'SpecificationName', 'SpecificationValue', 'ShowInFilter']
 
 
@@ -476,7 +482,7 @@ class shippingAgentUsersResource(serializers.ModelSerializer):
 
     class Meta:
         model = shippingAgentUsers
-        fields = ['id', 'UserName', 'ShippingAgentName']
+        fields = ['id', 'ShippingAgentId', 'UserName', 'ShippingAgentName']
 
 
 class shippingDetailsResource(serializers.ModelSerializer):
@@ -542,7 +548,7 @@ class storesResource(serializers.ModelSerializer):
     class Meta:
         model = stores
         fields = ['id', 'NameA', 'NameL', 'Email', 'Address', 'VendorId',
-                  'CountryId', 'City', 'ShippingAgentName', 'VendorName', 'CountryName']
+                  'CountryId', 'City', 'ShippingAgentName', 'ShippingAgentId', 'VendorName', 'CountryName']
 
 
 class transactionTypesResource(serializers.ModelSerializer):
@@ -574,7 +580,8 @@ class vendorPriceListsResource(serializers.ModelSerializer):
 
     class Meta:
         model = vendorPriceLists
-        fields = ['id', 'VendorName', 'ProductName', 'CountryName', 'Price']
+        fields = ['id', 'VendorId', 'ProductId', 'CountryId',
+                  'VendorName', 'ProductName', 'CountryName', 'Price']
 
 
 class vendorsResource(serializers.ModelSerializer):

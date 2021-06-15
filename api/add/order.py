@@ -24,9 +24,9 @@ class AddOrder():
             Serializer = cartResource(items, many=True)
             Data = json.loads(JSONRenderer().render(Serializer.data))
             if items.count() > 0:
+                master = orderMasters.objects.create(
+                    cartId_id=cartId, DateCreated=datetime.datetime.now(), UserId_id=userId, OrderStatusId_id=0)
                 for data in Data:
-                    master = orderMasters.objects.create(
-                        cartId_id=cartId, DateCreated=datetime.datetime.now(), UserId_id=userId, OrderStatusId_id=0)
                     order = orders.objects.create(
                         MasterId_id=master.id, cartId_id=cartId,
                         ProductId_id=data['ProductId'], StoreId_id=data['StoreId'],

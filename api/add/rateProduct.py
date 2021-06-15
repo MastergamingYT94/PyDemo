@@ -2,7 +2,7 @@ import json
 from django.views.decorators.csrf import csrf_exempt
 from abc import ABC, abstractmethod
 from django.http.response import JsonResponse
-from PyCommerce.models import productStoreRatings, users
+from PyCommerce.models import productStoreRatings
 
 
 class IRateProduct(ABC):

@@ -1,6 +1,6 @@
 from django.urls import path
 from ..get import all, get
-from ..get.items import homeProducts, specifications, subCategories, mainCategories, reviews, proSpecInv, cart, ordersFiltered
+from ..get.items import homeProducts, specifications, subCategories, mainCategories, reviews, proSpecInv, cart, ordersFiltered, productSpec
 
 urlpatterns = [
     path('mainCategories', mainCategories.get_main_categories),
@@ -9,6 +9,7 @@ urlpatterns = [
     path('proSpecInv/<int:ProductId>',
          proSpecInv.get_product_specifications_inv),
     path('spec/<CategoryId>', specifications.get_specifications),
+    path('productSpec/<ProductId>', productSpec.get_product_specifications),
     path('reviews/<int:ProductId>', reviews.get_reviews),
     path('reviews/', reviews.get_reviews),
     path('ordersFiltered/<int:UserId>/<int:Status>',

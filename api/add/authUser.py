@@ -1,9 +1,9 @@
 from api.resources import usersResource
-import json
 from PyCommerce.models import users
 from django.http.response import JsonResponse
 from abc import ABC, abstractmethod
 from django.views.decorators.csrf import csrf_exempt
+import json
 
 
 class IAuthenticateUser(ABC):

@@ -1,8 +1,8 @@
-import json
 from django.views.decorators.csrf import csrf_exempt
 from abc import ABC, abstractmethod
 from django.http.response import JsonResponse
-from PyCommerce.models import cartTransactions, products
+from PyCommerce.models import cartTransactions
+import json
 
 
 class IAddCartItem(ABC):

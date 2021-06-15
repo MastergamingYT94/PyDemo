@@ -14,14 +14,16 @@ class IRegisterUser(ABC):
 class RegisterUser():
     @csrf_exempt
     def register_user(self, request):
+        data = False
         if request.method == "POST":
-            data = False
             result = json.loads(request.body)
-            try:
-                users.objects.filter(Email=result['Email'])
-            except users.DoesNotExist:
-                users.objects.create(**result)
-                data = True
+            Users = users.objects.filter(Email=result['Email'])
+            if Users.count() > 0:
+                data = False
+            else:
+                Serializer = users.objects.create(**result)
+                data = {k: v for item in Serializer.data for k,
+                        v in item.items()}
         return JsonResponse(data, safe=False)
 
 

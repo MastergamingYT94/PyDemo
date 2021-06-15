@@ -54,7 +54,8 @@ INSTALLED_APPS = [
     'corsheaders',
 ]
 SITE_ID = 1
-SITE_URL = "http://pycommerceapp.herokuapp.com"
+SITE_URL = "http://127.0.0.1:8000"
+# SITE_URL = "http://pycommerceapp.herokuapp.com"
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
@@ -146,7 +147,6 @@ STATICFILES_DIRS = (
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/images/')
 MEDIA_URL = '/media/images/'
 
-DJANGORESIZED_DEFAULT_SIZE = [300, 200]
 DJANGORESIZED_DEFAULT_QUALITY = 100
 DJANGORESIZED_DEFAULT_FORCE_FORMAT = 'JPEG'
 DJANGORESIZED_DEFAULT_FORMAT_EXTENSIONS = {'JPEG': ".jpg"}

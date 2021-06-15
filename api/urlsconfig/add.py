@@ -1,6 +1,6 @@
 from django.urls import path
 from api.add import deliverOrder, deliveryNotes, user
-from ..add import add, cart, cartItem, authUser, order, rateProduct
+from ..add import add, cart, cartItem, authUser, order, rateProduct, copyProSpec
 from ..update import quantity, update, images
 from ..delete import deleteCart, deleteItem
 
@@ -14,6 +14,8 @@ urlpatterns = [
     path('deliverOrder/<int:OrderId>/<int:UserId>', deliverOrder.deliver_order),
     path('updateImages/<int:id>', images.update_images),
     path('rateProduct', rateProduct.rate_product),
+    path('copyProSpec/<int:ProductSpecId>/<int:ProductId>/<int:CategoryId>',
+         copyProSpec.copy_product_specifications),
 
     path('authUser', authUser.authenticate_user),
     path('registerUser', user.register_user),

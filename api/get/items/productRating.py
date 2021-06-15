@@ -1,4 +1,4 @@
-from PyCommerce.models import inventoryBalances, productStoreRatings, starPercent
+from PyCommerce.models import inventoryBalances, starPercent
 from django.http.response import JsonResponse
 from abc import ABC, abstractmethod
 from api.resources import starPercentResource

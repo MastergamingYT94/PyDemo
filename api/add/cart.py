@@ -1,6 +1,6 @@
 from django.views.decorators.csrf import csrf_exempt
 from abc import ABC, abstractmethod
-from django.http.response import HttpResponse, JsonResponse
+from django.http.response import JsonResponse
 from PyCommerce.models import cartTransactionMasters
 import datetime
 
