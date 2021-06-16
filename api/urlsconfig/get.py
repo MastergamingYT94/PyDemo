@@ -5,7 +5,7 @@ from api.get.items import assignCategory, cartItem, checkProduct, loginAsGuest, 
 urlpatterns = [
     path('assignCategory/<int:MainCategory>',
          assignCategory.assign_categories),
-    path('productRate/<int:ProductId>', productRating.get_product_rating),
+    #     path('productRate/<int:ProductId>', productRating.get_product_rating),
     path('cartItem/<int:ProductId>', cartItem.get_cart_item),
     path('user/<int:UserId>', user.get_user),
     path('checkProduct/<int:StoreId>/<int:ProductId>',

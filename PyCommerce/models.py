@@ -301,7 +301,7 @@ class getHomeProducts(models.Model):
 
     class Meta:
         managed = False
-        db_table = "gethomeproducts"
+        db_table = "GetHomeProducts"
 
 
 class specificationValueCount(models.Model):
@@ -312,7 +312,7 @@ class specificationValueCount(models.Model):
 
     class Meta:
         managed = False
-        db_table = "specificationvaluecount"
+        db_table = "SpecificationValueCount"
 
 
 class starPercent(models.Model):
@@ -336,4 +336,4 @@ class starPercent(models.Model):
 
     class Meta:
         managed = False
-        db_table = "getstarpercent"
+        db_table = "GetStarPercent"

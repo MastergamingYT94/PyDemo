@@ -95,10 +95,10 @@ WSGI_APPLICATION = 'PyDemo.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'PyCommerce',
-        'USER': 'root',
-        'PASSWORD': '6368100',
-        'HOST': '127.0.0.1',
+        'NAME': 'bjdpojll5mrwb2bn9mgs',
+        'USER': 'u8k8agaarvku2oek',
+        'PASSWORD': 'U1XdsbnmSScA5c5B2Y08',
+        'HOST': 'bjdpojll5mrwb2bn9mgs-mysql.services.clever-cloud.com',
         'PORT': '3306',
     }
 }
