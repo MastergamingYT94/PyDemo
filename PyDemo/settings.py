@@ -95,10 +95,11 @@ WSGI_APPLICATION = 'PyDemo.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'MastergamingYT$PyCommerce',
-        'USER': 'MastergamingYT',
-        'PASSWORD': '6368100Aa',
-        'HOST': 'MastergamingYT.mysql.pythonanywhere-services.com',
+        'NAME': 'PyCommerce',
+        'USER': 'root',
+        'PASSWORD': '6368100',
+        'HOST': '127.0.0.1',
+        'PORT': '3306',
     }
 }
 

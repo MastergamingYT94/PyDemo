@@ -1,5 +1,5 @@
 from PyDemo.settings import SITE_URL
-from PyCommerce.models import brands, cartTransactions, getHomeProducts, cartTransactionMasters, categories, countries, inventoryBalances, inventoryDetails, orderMasters, orderStatus, orders, productSpecifications, productStoreRatings, products, shippingAgents, shippingAgentUsers, shippingDetails, specificationValueCount, specifications, starPercent, storeShippingAgents, stores, transactionTypes, users, vendorPriceLists, vendors
+from PyCommerce.models import brands, cartTransactions, cartTransactionMasters, categories, countries, getHomeProducts, inventoryBalances, inventoryDetails, orderMasters, orderStatus, orders, productSpecifications, productStoreRatings, products, shippingAgents, shippingAgentUsers, shippingDetails, specificationValueCount, specifications, starPercent, storeShippingAgents, stores, transactionTypes, users, vendorPriceLists, vendors
 from rest_framework import serializers
 from django.db.models import Sum
 

@@ -3,8 +3,8 @@ from django_resized import ResizedImageField
 
 
 class brands(models.Model):
-    NameA = models.CharField(max_length=2550, null=True)
-    NameL = models.CharField(max_length=2550)
+    NameA = models.TextField(max_length=2550, null=True)
+    NameL = models.TextField(max_length=2550)
 
     def __str__(self):
         return self.NameL
@@ -17,19 +17,19 @@ class cartTransactionMasters(models.Model):
 class categories(models.Model):
     MainCategoryId = models.ForeignKey(
         'self', on_delete=models.DO_NOTHING, default='null', db_column='MainCategoryId', null=True, db_constraint=False)
-    NameA = models.CharField(max_length=2550, null=True)
-    NameL = models.CharField(max_length=2550)
+    NameA = models.TextField(max_length=2550, null=True)
+    NameL = models.TextField(max_length=2550)
     Level = models.IntegerField()
-    ImageUrl = models.CharField(max_length=2550, null=True)
+    ImageUrl = models.TextField(max_length=2550, null=True)
 
     def __str__(self):
         return self.NameL
 
 
 class countries(models.Model):
-    NameA = models.CharField(max_length=2550, null=True)
-    NameL = models.CharField(max_length=2550)
-    Symbol = models.CharField(max_length=2550)
+    NameA = models.TextField(max_length=2550, null=True)
+    NameL = models.TextField(max_length=2550)
+    Symbol = models.TextField(max_length=2550)
 
     def __str__(self):
         return self.NameL
@@ -37,37 +37,37 @@ class countries(models.Model):
 
 class orderStatus(models.Model):
     Code = models.IntegerField()
-    StatusNameA = models.CharField(max_length=2550, null=True)
-    StatusNameL = models.CharField(max_length=2550)
+    StatusNameA = models.TextField(max_length=2550, null=True)
+    StatusNameL = models.TextField(max_length=2550)
 
     def __str__(self):
         return self.StatusNameL
 
 
 class shippingAgents(models.Model):
-    NameA = models.CharField(max_length=2550, null=True)
-    NameL = models.CharField(max_length=2550)
-    Address1 = models.CharField(max_length=2550)
-    Address2 = models.CharField(max_length=2550, null=True)
-    Phone = models.CharField(max_length=2550, null=True)
-    Email = models.CharField(max_length=2550)
-    Password = models.CharField(max_length=2550)
-    PostCode = models.CharField(max_length=2550, null=True)
+    NameA = models.TextField(max_length=2550, null=True)
+    NameL = models.TextField(max_length=2550)
+    Address1 = models.TextField(max_length=2550)
+    Address2 = models.TextField(max_length=2550, null=True)
+    Phone = models.TextField(max_length=2550, null=True)
+    Email = models.TextField(max_length=2550)
+    Password = models.TextField(max_length=2550)
+    PostCode = models.TextField(max_length=2550, null=True)
 
     def __str__(self):
         return self.NameL
 
 
 class specificationValue(models.Model):
-    Name = models.CharField(max_length=2550)
+    Name = models.TextField(max_length=2550)
 
     def __str__(self):
         return self.Name
 
 
 class specifications(models.Model):
-    NameA = models.CharField(max_length=2550, null=True)
-    NameL = models.CharField(max_length=2550)
+    NameA = models.TextField(max_length=2550, null=True)
+    NameL = models.TextField(max_length=2550)
     ShowInFilter = models.BooleanField(null=True)
 
     def __str__(self):
@@ -76,49 +76,49 @@ class specifications(models.Model):
 
 class transactionTypes(models.Model):
     Code = models.IntegerField()
-    NameA = models.CharField(max_length=2550, null=True)
-    NameL = models.CharField(max_length=2550)
+    NameA = models.TextField(max_length=2550, null=True)
+    NameL = models.TextField(max_length=2550)
 
     def __str__(self):
         return self.NameL
 
 
 class users(models.Model):
-    NameA = models.CharField(max_length=2550, null=True)
-    NameL = models.CharField(max_length=2550)
-    Email = models.CharField(max_length=2550)
-    Password = models.CharField(max_length=2550)
-    Address1 = models.CharField(max_length=2550, null=True)
-    Address2 = models.CharField(max_length=2550, null=True)
+    NameA = models.TextField(max_length=2550, null=True)
+    NameL = models.TextField(max_length=2550)
+    Email = models.TextField(max_length=2550)
+    Password = models.TextField(max_length=2550)
+    Address1 = models.TextField(max_length=2550, null=True)
+    Address2 = models.TextField(max_length=2550, null=True)
     Phone = models.IntegerField(null=True)
-    City = models.CharField(max_length=2550, null=True)
+    City = models.TextField(max_length=2550, null=True)
 
     def __str__(self):
         return self.NameL
 
 
 class vendors(models.Model):
-    NameA = models.CharField(max_length=2550, null=True)
-    NameL = models.CharField(max_length=2550)
-    Address1 = models.CharField(max_length=2550)
-    Address2 = models.CharField(max_length=2550, null=True)
-    Phone = models.CharField(max_length=2550, null=True)
-    Email = models.CharField(max_length=2550)
-    Password = models.CharField(max_length=2550)
-    PostCode = models.CharField(max_length=2550, null=True)
+    NameA = models.TextField(max_length=2550, null=True)
+    NameL = models.TextField(max_length=2550)
+    Address1 = models.TextField(max_length=2550)
+    Address2 = models.TextField(max_length=2550, null=True)
+    Phone = models.TextField(max_length=2550, null=True)
+    Email = models.TextField(max_length=2550)
+    Password = models.TextField(max_length=2550)
+    PostCode = models.TextField(max_length=2550, null=True)
 
     def __str__(self):
         return self.NameL
 
 
 class products(models.Model):
-    NameA = models.CharField(max_length=2550, null=True)
-    NameL = models.CharField(max_length=2550)
+    NameA = models.TextField(max_length=2550, null=True)
+    NameL = models.TextField(max_length=2550)
     Image = ResizedImageField(null=True, blank=True)
     Image2 = ResizedImageField(null=True, blank=True)
     Image3 = ResizedImageField(null=True, blank=True)
     Image4 = ResizedImageField(null=True, blank=True)
-    Description = models.CharField(max_length=2550, null=True)
+    Description = models.TextField(max_length=2550, null=True)
     BrandId = models.ForeignKey(
         brands, on_delete=models.DO_NOTHING,  db_column='BrandId', db_constraint=False)
     CategoryId = models.ForeignKey(
@@ -139,8 +139,8 @@ class vendorPriceLists(models.Model):
 
 
 class productSpecifications(models.Model):
-    SpecificationName = models.CharField(max_length=2550)
-    SpecificationValue = models.CharField(max_length=2550)
+    SpecificationName = models.TextField(max_length=2550)
+    SpecificationValue = models.TextField(max_length=2550)
     ShowInFilter = models.BooleanField(null=True)
     CategoryId = models.ForeignKey(
         categories, on_delete=models.DO_NOTHING,  db_column='CategoryId', db_constraint=False)
@@ -154,13 +154,13 @@ class productSpecifications(models.Model):
 
 
 class stores(models.Model):
-    NameA = models.CharField(max_length=2550, null=True)
-    NameL = models.CharField(max_length=2550)
-    Email = models.CharField(max_length=2550)
-    Address = models.CharField(max_length=2550, null=True)
-    City = models.CharField(max_length=2550)
-    Latitude = models.CharField(max_length=2550, null=True)
-    Longitude = models.CharField(max_length=2550, null=True)
+    NameA = models.TextField(max_length=2550, null=True)
+    NameL = models.TextField(max_length=2550)
+    Email = models.TextField(max_length=2550)
+    Address = models.TextField(max_length=2550, null=True)
+    City = models.TextField(max_length=2550)
+    Latitude = models.TextField(max_length=2550, null=True)
+    Longitude = models.TextField(max_length=2550, null=True)
     CountryId = models.ForeignKey(
         countries, on_delete=models.DO_NOTHING,  db_column='CountryId', db_constraint=False)
     VendorId = models.ForeignKey(
@@ -215,7 +215,7 @@ class cartTransactions(models.Model):
 
 class orderMasters(models.Model):
     DateCreated = models.DateTimeField()
-    ShippingAddress = models.CharField(max_length=2550, null=True)
+    ShippingAddress = models.TextField(max_length=2550, null=True)
     cartId = models.ForeignKey(
         cartTransactions, db_column='CartId', on_delete=models.DO_NOTHING, db_constraint=False)
     UserId = models.ForeignKey(
@@ -228,8 +228,8 @@ class orders(models.Model):
     UnitPrice = models.FloatField()
     TotalPrice = models.FloatField()
     isDelivered = models.BooleanField()
-    Latitude = models.CharField(max_length=2550, null=True)
-    Longitude = models.CharField(max_length=2550,  null=True)
+    Latitude = models.TextField(max_length=2550, null=True)
+    Longitude = models.TextField(max_length=2550,  null=True)
     Quantity = models.FloatField()
     DeliveredByUserId = models.ForeignKey(
         users, db_column='DeliveredByUserId', on_delete=models.DO_NOTHING, related_name='UserId', db_constraint=False, null=True)
@@ -248,7 +248,7 @@ class orders(models.Model):
 
 
 class shippingDetails(models.Model):
-    DeliveryNotes = models.CharField(max_length=2550, null=True)
+    DeliveryNotes = models.TextField(max_length=2550, null=True)
     OrderId = models.ForeignKey(
         orders, on_delete=models.DO_NOTHING, db_column='OrderId', db_constraint=False)
     ShippingAgentId = models.ForeignKey(
@@ -260,7 +260,7 @@ class shippingDetails(models.Model):
 
 class productStoreRatings(models.Model):
     RatingId = models.IntegerField()
-    ProductReview = models.CharField(max_length=2550, null=True)
+    ProductReview = models.TextField(max_length=2550, null=True)
     ProductId = models.ForeignKey(
         products, on_delete=models.DO_NOTHING,  db_column='ProductId', db_constraint=False)
     StoreId = models.ForeignKey(
@@ -278,15 +278,15 @@ class getHomeProducts(models.Model):
     ProductId = models.ForeignKey(
         products, on_delete=models.DO_NOTHING, db_column='ProductId', db_constraint=False)
     QuantityBalance = models.FloatField()
-    ProductName = models.CharField(max_length=2550)
-    StoreName = models.CharField(max_length=2550)
+    ProductName = models.TextField(max_length=2550)
+    StoreName = models.TextField(max_length=2550)
     Image = ResizedImageField(null=True, blank=True)
     Image2 = ResizedImageField(null=True, blank=True)
     Image3 = ResizedImageField(null=True, blank=True)
     Image4 = ResizedImageField(null=True, blank=True)
-    Description = models.CharField(max_length=2550)
+    Description = models.TextField(max_length=2550)
     Price = models.FloatField()
-    Currency = models.CharField(max_length=2550)
+    Currency = models.TextField(max_length=2550)
     CategoryId = models.ForeignKey(
         categories, on_delete=models.DO_NOTHING, db_column='CategoryId', db_constraint=False)
     PageNumber = models.IntegerField()
@@ -301,18 +301,18 @@ class getHomeProducts(models.Model):
 
     class Meta:
         managed = False
-        db_table = "GetHomeProducts"
+        db_table = "gethomeproducts"
 
 
 class specificationValueCount(models.Model):
     SpecificationId = models.IntegerField()
-    SpecificationValue = models.CharField(max_length=2550)
+    SpecificationValue = models.TextField(max_length=2550)
     SpecificationCount = models.IntegerField()
     CategoryId = models.IntegerField()
 
     class Meta:
         managed = False
-        db_table = "SpecificationValueCount"
+        db_table = "specificationvaluecount"
 
 
 class starPercent(models.Model):
@@ -336,4 +336,4 @@ class starPercent(models.Model):
 
     class Meta:
         managed = False
-        db_table = "GetStarPercent"
+        db_table = "getstarpercent"
