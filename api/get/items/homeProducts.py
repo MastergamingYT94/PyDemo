@@ -21,7 +21,7 @@ class IGetHomeProducts(ABC):
 class GetHomeProducts(IGetHomeProducts):
     def get_home_products(self, request, page=1, specValue='null', search='null', categoryId=0):
         if request.method == 'GET':
-            homeProducts = getHomeProducts.objects.all().order_by('StoreId')
+            homeProducts = getHomeProducts.objects.all().order_by('id')
 
             if search != 'null':
                 homeProducts = homeProducts.filter(
@@ -72,7 +72,7 @@ class GetHomeProducts(IGetHomeProducts):
 
     def get_max_page(self, request, specValue='null', search='null', categoryId=0):
         if request.method == 'GET':
-            homeProducts = getHomeProducts.objects.all().order_by('StoreId')
+            homeProducts = getHomeProducts.objects.all().order_by('id')
 
             if search != 'null':
                 homeProducts = homeProducts.filter(
