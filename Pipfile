@@ -12,7 +12,6 @@ pylint-django = "*"
 django-cors-headers = "*"
 djangorestframework = "*"
 dj-database-url = "*"
-django-resized = "*"
 psycopg2-binary = "*"
 mysqlclient = "*"
 

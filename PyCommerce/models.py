@@ -1,5 +1,4 @@
 from django.db import models
-from django_resized import ResizedImageField
 
 
 class brands(models.Model):
@@ -114,10 +113,10 @@ class vendors(models.Model):
 class products(models.Model):
     NameA = models.TextField(max_length=2550, null=True)
     NameL = models.TextField(max_length=2550)
-    Image = ResizedImageField(null=True, blank=True)
-    Image2 = ResizedImageField(null=True, blank=True)
-    Image3 = ResizedImageField(null=True, blank=True)
-    Image4 = ResizedImageField(null=True, blank=True)
+    Image = models.ImageField(null=True, blank=True)
+    Image2 = models.ImageField(null=True, blank=True)
+    Image3 = models.ImageField(null=True, blank=True)
+    Image4 = models.ImageField(null=True, blank=True)
     Description = models.TextField(max_length=2550, null=True)
     BrandId = models.ForeignKey(
         brands, on_delete=models.DO_NOTHING,  db_column='BrandId', db_constraint=False)
@@ -280,10 +279,10 @@ class getHomeProducts(models.Model):
     QuantityBalance = models.FloatField()
     ProductName = models.TextField(max_length=2550)
     StoreName = models.TextField(max_length=2550)
-    Image = ResizedImageField(null=True, blank=True)
-    Image2 = ResizedImageField(null=True, blank=True)
-    Image3 = ResizedImageField(null=True, blank=True)
-    Image4 = ResizedImageField(null=True, blank=True)
+    Image = models.ImageField(null=True, blank=True)
+    Image2 = models.ImageField(null=True, blank=True)
+    Image3 = models.ImageField(null=True, blank=True)
+    Image4 = models.ImageField(null=True, blank=True)
     Description = models.TextField(max_length=2550)
     Price = models.FloatField()
     Currency = models.TextField(max_length=2550)
