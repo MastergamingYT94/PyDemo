@@ -258,6 +258,7 @@ class shippingDetails(models.Model):
 
 
 class productStoreRatings(models.Model):
+    id = models.AutoField(primary_key=True)
     RatingId = models.IntegerField()
     ProductReview = models.TextField(max_length=2550, null=True)
     ProductId = models.ForeignKey(
