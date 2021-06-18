@@ -1,4 +1,4 @@
-from .models import brands, cartTransactions, cartTransactionMasters, categories, countries, inventoryBalances, inventoryDetails, orderMasters, orderStatus, orders, productSpecifications, productStoreRatings, products, shippingAgents, shippingAgentUsers, shippingDetails, specifications, storeShippingAgents, stores, transactionTypes, users, vendorPriceLists, vendors
+from .models import brands, cartTransactions, cartTransactionMasters, categories, countries, getHomeProducts, inventoryBalances, inventoryDetails, orderMasters, orderStatus, orders, productSpecifications, productStoreRatings, products, shippingAgents, shippingAgentUsers, shippingDetails, specifications, storeShippingAgents, stores, transactionTypes, users, vendorPriceLists, vendors
 from django.contrib import admin
 
 
@@ -105,10 +105,10 @@ class VendorsAdmin(admin.ModelAdmin):
                     'Phone', 'Email', 'Password', 'PostCode')
 
 
-# class GetHomeProductsAdmin(admin.ModelAdmin):
-#     list_display = ('id', 'StoreId', 'ProductId', 'QuantityBalance', 'ProductName',
-#                     'StoreName', 'Image', 'Image2', 'Image3', 'Image4', 'Description', 'Price',
-#                     'Currency', 'CategoryId', 'PageNumber')
+class GetHomeProductsAdmin(admin.ModelAdmin):
+    list_display = ('id', 'StoreId', 'ProductId', 'QuantityBalance', 'ProductName',
+                    'StoreName', 'Image', 'Image2', 'Image3', 'Image4', 'Description', 'Price',
+                    'Currency', 'CategoryId', 'PageNumber')
 
 
 admin.site.register(brands, BrandsAdmin)
@@ -134,4 +134,4 @@ admin.site.register(transactionTypes, TransactionTypeAdmin)
 admin.site.register(users, UsersAdmin)
 admin.site.register(vendorPriceLists, VendorPriceListAdmin)
 admin.site.register(vendors, VendorsAdmin)
-# admin.site.register(getHomeProducts, GetHomeProductsAdmin)
+admin.site.register(getHomeProducts, GetHomeProductsAdmin)

@@ -1,0 +1,43 @@
+id,NameL,ShowInFilter,NameA
+1,Color,1,Color
+2,Graphic Card,1,Graphic Card
+3,Hard Disk Capacity,1,Hard Disk Capacity
+4,Keyboard Languages,0,Keyboard Languages
+5,Memory Technology,1,Memory Technology
+6,Optical Drive Type,1,Optical Drive Type
+7,Package height,0,Package height
+8,Package Width,0,Package Width
+9,Processor,1,Processor
+10,RAM,1,RAM
+11,RAM Type,1,RAM Type
+12,Scree,1,Scree
+13,Touch scree,1,Touch scree
+14,Usage,1,Usage
+15,USB,0,USB
+16,Weight,0,Weight
+17,Operating System Type,1,Operating System Type
+18,Package thickness,0,Package thickness
+19,Storage Capacity,1,Storage Capacity
+20,Package weight in KGs,0,Package weight in KGs
+21,Number Of SIM,1,Number Of SIM
+22,Mobile Phone Type,1,Mobile Phone Type
+23,Cellular Network Technology,1,Cellular Network Technology
+24,Chipset manufacturer,1,Chipset manufacturer
+25,Model Number,1,Model Number
+26,EAN-13,0,EAN-13
+27,Battery Capacity in mAh,1,Battery Capacity in mAh
+28,Expirable,0,Expirable
+29,External Product ID Type,0,External Product ID Type
+30,External Product ID,0,External Product ID
+31,Rear Camera Resolutio,1,Rear Camera Resolutio
+32,Screen Size,1,Screen Size
+33,Brand,1,Brand
+34,TV Type,1,TV Type
+35,Remote Control,1,Remote Control
+36,HD Type,1,HD Type
+37,Display Resolutio,1,Display Resolutio
+38,Display Type,1,Display Type
+1034,Size,1,Size
+1035,Type,1,Type
+1036,Material,1,Material
+1037,Size,1,Size

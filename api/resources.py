@@ -1,5 +1,5 @@
 from PyDemo.settings import SITE_URL
-from PyCommerce.models import brands, cartTransactions, cartTransactionMasters, categories, countries, inventoryBalances, inventoryDetails, orderMasters, orderStatus, orders, productSpecifications, productStoreRatings, products, shippingAgents, shippingAgentUsers, shippingDetails, specifications, storeShippingAgents, stores, transactionTypes, users, vendorPriceLists, vendors
+from PyCommerce.models import brands, cartTransactions, cartTransactionMasters, categories, countries, getHomeProducts, inventoryBalances, inventoryDetails, orderMasters, orderStatus, orders, productSpecifications, productStoreRatings, products, shippingAgents, shippingAgentUsers, shippingDetails, specificationValueCount, specifications, starPercent, storeShippingAgents, stores, transactionTypes, users, vendorPriceLists, vendors
 from rest_framework import serializers
 from django.db.models import Sum
 
@@ -591,39 +591,39 @@ class vendorsResource(serializers.ModelSerializer):
                   'Phone', 'Email', 'Password', 'PostCode']
 
 
-# class getHomeProductsResource(serializers.ModelSerializer):
-#     Image = serializers.SerializerMethodField('image')
+class getHomeProductsResource(serializers.ModelSerializer):
+    Image = serializers.SerializerMethodField('image')
 
-#     def image(self, obj):
-#         Image = None
-#         if obj.ProductId.Image:
-#             if obj.ProductId.Image.url:
-#                 Image = SITE_URL + obj.ProductId.Image.url
-#         return Image
+    def image(self, obj):
+        Image = None
+        if obj.ProductId.Image:
+            if obj.ProductId.Image.url:
+                Image = SITE_URL + obj.ProductId.Image.url
+        return Image
 
-#     class Meta:
-#         model = getHomeProducts
-#         fields = ['id', 'StoreId', 'ProductId', 'QuantityBalance', 'ProductName',
-#                   'StoreName', 'Image', 'Description', 'Price',
-#                   'Currency', 'CategoryId', 'PageNumber', 'FiveStarsCount', 'FourStarsCount',
-#                   'ThreeStarsCount', 'TwoStarsCount', 'OneStarsCount', 'MaxTotalRating', 'finalProductRating', 'OutOfFivestring']
-
-
-# class specificationValueCountResource(serializers.ModelSerializer):
-#     isSelected = serializers.SerializerMethodField('is_selected')
-
-#     def is_selected(self, obj):
-#         return False
-
-#     class Meta:
-#         model = specificationValueCount
-#         fields = ['id', 'SpecificationId', 'SpecificationValue',
-#                   'SpecificationCount', 'CategoryId', 'isSelected']
+    class Meta:
+        model = getHomeProducts
+        fields = ['id', 'StoreId', 'ProductId', 'QuantityBalance', 'ProductName',
+                  'StoreName', 'Image', 'Description', 'Price',
+                  'Currency', 'CategoryId', 'PageNumber', 'FiveStarsCount', 'FourStarsCount',
+                  'ThreeStarsCount', 'TwoStarsCount', 'OneStarsCount', 'MaxTotalRating', 'finalProductRating', 'OutOfFivestring']
 
 
-# class starPercentResource(serializers.ModelSerializer):
-#     class Meta:
-#         model = starPercent
-#         fields = ['id', 'ProductId', 'StoreId', 'FiveStarsCount', 'FourStarsCount', 'ThreeStarsCount',
-#                   'TwoStarsCount', 'OneStarCount', 'FiveStarsPercent', 'FourStarsPercent', 'ThreeStarsPercent',
-#                   'TwoStarsPercent', 'OneStarPercent', 'averageRating', 'OutOfFive', 'allReviewsCount']
+class specificationValueCountResource(serializers.ModelSerializer):
+    isSelected = serializers.SerializerMethodField('is_selected')
+
+    def is_selected(self, obj):
+        return False
+
+    class Meta:
+        model = specificationValueCount
+        fields = ['id', 'SpecificationId', 'SpecificationValue',
+                  'SpecificationCount', 'CategoryId', 'isSelected']
+
+
+class starPercentResource(serializers.ModelSerializer):
+    class Meta:
+        model = starPercent
+        fields = ['id', 'ProductId', 'StoreId', 'FiveStarsCount', 'FourStarsCount', 'ThreeStarsCount',
+                  'TwoStarsCount', 'OneStarCount', 'FiveStarsPercent', 'FourStarsPercent', 'ThreeStarsPercent',
+                  'TwoStarsPercent', 'OneStarPercent', 'averageRating', 'OutOfFive', 'allReviewsCount']

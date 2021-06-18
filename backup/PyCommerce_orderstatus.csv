@@ -1,0 +1,5 @@
+id,Code,StatusNameL,StatusNameA
+0,1,Ready for Shipping,جاهز للشحن
+1,2,Out for delivery,خرج للتوصيل
+2,3,Delivered,تم التسليم
+3,0,Cancelled,تم الإلغاء
