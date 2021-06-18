@@ -1,7 +1,0 @@
-id,NameL,Email,Address,City,Latitude,Longitude,CountryId,ShippingAgentId,VendorId,NameA
-17,Abdullah Egypt,abdullahmohamedezzat21@gmail.com,,,30.057119,31.342715000000002,1,1,1,
-23,Mohamed Store,mohamedezzatnada@gmail.com,,,30.057119,31.342715000000002,1,4,1,
-25,New Store,newStore@mail.com,,,30.057119,31.342715000000002,1,4,1,
-26,New Store2,newStore2@mail.com,,,30.057119,31.342715000000002,1,1,1,
-27,New Store2,newStore2@mail.com,,,30.057119,31.342715000000002,1,4,1,
-28,New Store4,newStore2@mail.com,,,30.057119,31.342715000000002,1,1,1,
