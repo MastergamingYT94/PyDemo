@@ -13,7 +13,7 @@ class IGetOrders(ABC):
 class Orders():
     def get_orders(self, request, userId):
         if request.method == 'GET':
-            data = orders.objects.filter(UserId=userId)[:12]
+            data = orders.objects.filter(UserId=userId)
             Serializer = ordersResource(data, many=True)
         return JsonResponse(Serializer.data, safe=False)
 
