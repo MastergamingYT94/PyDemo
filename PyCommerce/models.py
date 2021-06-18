@@ -271,68 +271,68 @@ class productStoreRatings(models.Model):
         return self.RatingId
 
 
-class getHomeProducts(models.Model):
-    StoreId = models.ForeignKey(
-        stores, on_delete=models.DO_NOTHING, db_column='StoreId', db_constraint=False)
-    ProductId = models.ForeignKey(
-        products, on_delete=models.DO_NOTHING, db_column='ProductId', db_constraint=False)
-    QuantityBalance = models.FloatField()
-    ProductName = models.TextField(max_length=2550)
-    StoreName = models.TextField(max_length=2550)
-    Image = models.ImageField(null=True, blank=True)
-    Image2 = models.ImageField(null=True, blank=True)
-    Image3 = models.ImageField(null=True, blank=True)
-    Image4 = models.ImageField(null=True, blank=True)
-    Description = models.TextField(max_length=2550)
-    Price = models.FloatField()
-    Currency = models.TextField(max_length=2550)
-    CategoryId = models.ForeignKey(
-        categories, on_delete=models.DO_NOTHING, db_column='CategoryId', db_constraint=False)
-    PageNumber = models.IntegerField()
-    FiveStarsCount = models.FloatField()
-    FourStarsCount = models.FloatField()
-    ThreeStarsCount = models.FloatField()
-    TwoStarsCount = models.FloatField()
-    OneStarsCount = models.FloatField()
-    MaxTotalRating = models.FloatField()
-    finalProductRating = models.FloatField()
-    OutOfFivestring = models.FloatField()
+# class getHomeProducts(models.Model):
+#     StoreId = models.ForeignKey(
+#         stores, on_delete=models.DO_NOTHING, db_column='StoreId', db_constraint=False)
+#     ProductId = models.ForeignKey(
+#         products, on_delete=models.DO_NOTHING, db_column='ProductId', db_constraint=False)
+#     QuantityBalance = models.FloatField()
+#     ProductName = models.TextField(max_length=2550)
+#     StoreName = models.TextField(max_length=2550)
+#     Image = models.ImageField(null=True, blank=True)
+#     Image2 = models.ImageField(null=True, blank=True)
+#     Image3 = models.ImageField(null=True, blank=True)
+#     Image4 = models.ImageField(null=True, blank=True)
+#     Description = models.TextField(max_length=2550)
+#     Price = models.FloatField()
+#     Currency = models.TextField(max_length=2550)
+#     CategoryId = models.ForeignKey(
+#         categories, on_delete=models.DO_NOTHING, db_column='CategoryId', db_constraint=False)
+#     PageNumber = models.IntegerField()
+#     FiveStarsCount = models.FloatField()
+#     FourStarsCount = models.FloatField()
+#     ThreeStarsCount = models.FloatField()
+#     TwoStarsCount = models.FloatField()
+#     OneStarsCount = models.FloatField()
+#     MaxTotalRating = models.FloatField()
+#     finalProductRating = models.FloatField()
+#     OutOfFivestring = models.FloatField()
 
-    class Meta:
-        managed = False
-        db_table = "GetHomeProducts"
-
-
-class specificationValueCount(models.Model):
-    SpecificationId = models.IntegerField()
-    SpecificationValue = models.TextField(max_length=2550)
-    SpecificationCount = models.IntegerField()
-    CategoryId = models.IntegerField()
-
-    class Meta:
-        managed = False
-        db_table = "SpecificationValueCount"
+#     class Meta:
+#         managed = False
+#         db_table = "GetHomeProducts"
 
 
-class starPercent(models.Model):
-    ProductId = models.ForeignKey(
-        products, on_delete=models.DO_NOTHING, db_column='ProductId', db_constraint=False)
-    StoreId = models.ForeignKey(
-        stores, on_delete=models.DO_NOTHING, db_column='StoreId', db_constraint=False)
-    FiveStarsCount = models.FloatField()
-    FourStarsCount = models.FloatField()
-    ThreeStarsCount = models.FloatField()
-    TwoStarsCount = models.FloatField()
-    OneStarCount = models.FloatField()
-    FiveStarsPercent = models.FloatField()
-    FourStarsPercent = models.FloatField()
-    ThreeStarsPercent = models.FloatField()
-    TwoStarsPercent = models.FloatField()
-    OneStarPercent = models.FloatField()
-    averageRating = models.FloatField()
-    OutOfFive = models.FloatField()
-    allReviewsCount = models.IntegerField()
+# class specificationValueCount(models.Model):
+#     SpecificationId = models.IntegerField()
+#     SpecificationValue = models.TextField(max_length=2550)
+#     SpecificationCount = models.IntegerField()
+#     CategoryId = models.IntegerField()
 
-    class Meta:
-        managed = False
-        db_table = "GetStarPercent"
+#     class Meta:
+#         managed = False
+#         db_table = "SpecificationValueCount"
+
+
+# class starPercent(models.Model):
+#     ProductId = models.ForeignKey(
+#         products, on_delete=models.DO_NOTHING, db_column='ProductId', db_constraint=False)
+#     StoreId = models.ForeignKey(
+#         stores, on_delete=models.DO_NOTHING, db_column='StoreId', db_constraint=False)
+#     FiveStarsCount = models.FloatField()
+#     FourStarsCount = models.FloatField()
+#     ThreeStarsCount = models.FloatField()
+#     TwoStarsCount = models.FloatField()
+#     OneStarCount = models.FloatField()
+#     FiveStarsPercent = models.FloatField()
+#     FourStarsPercent = models.FloatField()
+#     ThreeStarsPercent = models.FloatField()
+#     TwoStarsPercent = models.FloatField()
+#     OneStarPercent = models.FloatField()
+#     averageRating = models.FloatField()
+#     OutOfFive = models.FloatField()
+#     allReviewsCount = models.IntegerField()
+
+#     class Meta:
+#         managed = False
+#         db_table = "GetStarPercent"

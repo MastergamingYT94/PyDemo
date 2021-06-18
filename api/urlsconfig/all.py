@@ -15,12 +15,12 @@ urlpatterns = [
     path('ordersFiltered/<int:UserId>/<int:Status>',
          ordersFiltered.get_orders_filtered),
 
-    path('getHomeProducts/page=<int:page>/specValue=<specValue>/search=<search>/category=<int:categoryId>',
-         homeProducts.get_home_products),
-    path('getMaxPage/specValue=<specValue>/search=<search>/category=<int:categoryId>',
-         homeProducts.get_max_page),
-    path('productNames/<search>', homeProducts.get_searched_products),
-    path('productNames/', homeProducts.get_searched_products),
+    #     path('getHomeProducts/page=<int:page>/specValue=<specValue>/search=<search>/category=<int:categoryId>',
+    #          homeProducts.get_home_products),
+    #     path('getMaxPage/specValue=<specValue>/search=<search>/category=<int:categoryId>',
+    #          homeProducts.get_max_page),
+    #     path('productNames/<search>', homeProducts.get_searched_products),
+    #     path('productNames/', homeProducts.get_searched_products),
 
     path('<model>', all.get_all_data),
     path('<model>/<int:id>', get.get_data),
