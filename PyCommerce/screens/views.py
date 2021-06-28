@@ -46,7 +46,7 @@ def home(request):
     return render(request, 'products/home.html',
                   {
                       'Products':  products,
-                      'Categories': categories,
+                      'Categories': Categories,
                       'subCategories': subCategories,
                       'Search': search,
                       'MaxPageNumber': range(1, maxPageNumber + 1),
