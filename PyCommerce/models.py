@@ -1,4 +1,5 @@
 from django.db import models
+from cloudinary.models import CloudinaryField
 
 
 class brands(models.Model):
@@ -116,7 +117,7 @@ class products(models.Model):
     Image = models.ImageField(null=True, blank=True)
     Image2 = models.ImageField(null=True, blank=True)
     Image3 = models.ImageField(null=True, blank=True)
-    Image4 = models.ImageField(null=True, blank=True)
+    Image4 = CloudinaryField('image')
     Description = models.TextField(max_length=2550, null=True)
     BrandId = models.ForeignKey(
         brands, on_delete=models.DO_NOTHING,  db_column='BrandId', db_constraint=False)
@@ -258,7 +259,6 @@ class shippingDetails(models.Model):
 
 
 class productStoreRatings(models.Model):
-    id = models.AutoField(primary_key=True)
     RatingId = models.IntegerField()
     ProductReview = models.TextField(max_length=2550, null=True)
     ProductId = models.ForeignKey(

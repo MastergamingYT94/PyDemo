@@ -1,24 +1,20 @@
-from PyCommerce.models import getHomeProducts
+from PyCommerce.models import getHomeProducts, categories
 from django.core.paginator import Paginator
 from django.shortcuts import render
 from django import template
-
 import math
 
-import requests
-urls = "http://angulardemo.somee.com/Products"
-
 HomeProducts = getHomeProducts.objects.all().order_by("StoreId")
-getAllCategory = requests.get(urls + "/GetAllCategory")
-getSubCategory = requests.get(urls + "/GetSubCategory")
+getAllCategory = categories.objects.all()
+getSubCategory = categories.objects.all()
 
 product_name = [product.ProductName for product in HomeProducts]
-categories = [category for category in getAllCategory.json()]
-subCategories = [sub for sub in getSubCategory.json()]
+Categories = [category for category in getAllCategory]
+subCategories = [sub for sub in getSubCategory]
 
 
 def welcome(request):
-    return render(request, 'products/welcome.html', {'Categories': categories,
+    return render(request, 'products/welcome.html', {'Categories': Categories,
                                                      'subCategories': subCategories, })
 
 
