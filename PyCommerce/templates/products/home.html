@@ -1,0 +1,126 @@
+{% extends "index.html" %} {% load static %} {% load humanize %}
+<html lang="en">
+  {% block content %}
+  <head>
+    <link
+      rel="stylesheet"
+      href="{% static 'css/products/home.css' %}"
+      type="text/css"
+    />
+  </head>
+  <body>
+    <div class="align">
+      <form method="post">
+        {% csrf_token %} <input id="search" type="search" name="search"
+        placeholder="Search.." autofocus value='{{Search}}' "" />
+        <button class="searchTerm" type="submit">
+          <i class="fa fa-search" aria-hidden="true"></i>
+        </button>
+      </form>
+
+      {% for product in Products %}
+      <div class="d-flex">
+        <div class="card contain">
+          <div class="row g-0">
+            <div class="col-3 align border">
+              <img
+                class="product-image"
+                src="{{product.ImageUrl7}}"
+                alt="{{product.ProductName}}"
+              />
+            </div>
+            <div class="col-6 align border">
+              <div class="card-body">
+                <h5 class="title">{{product.ProductName}}</h5>
+                <div class="star-ratings-sprite">
+                  <span
+                    style="width: {{product.finalProductRating}}%"
+                    class="star-ratings-sprite-rating"
+                  ></span>
+                </div>
+
+                <div class="description">
+                  <div id="summary">
+                    <p class="collapse" id="productId{{product.Id}}">
+                      {{product.Description}}
+                    </p>
+                    <a
+                      class="collapsed"
+                      data-toggle="collapse"
+                      href="#productId{{product.Id}}"
+                      aria-expanded="false"
+                      aria-controls="collapseSummary"
+                    ></a>
+                  </div>
+                  <p class="card-text">
+                    <strong>Quantity </strong>{{ product.QuantityBalance }}
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-3 align border">
+              <div class="details">
+                <strong style="color: #006fcc"
+                  >{{product.Price|intcomma}}</strong
+                >
+                <strong class="currency">{{product.Currency}}</strong>
+                <p class="card-text" style="margin-left: 3px">
+                  <small class="text-muted font"
+                    >Sold By <br />{{product.StoreName}}</small
+                  >
+                </p>
+                <button class="btn-infos btn-font">
+                  <div style="margin-top: -3px">
+                    <small class="font">VIEW DETAILS</small>
+                  </div>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {% endfor %}
+      <nav>
+        <ul style="flex-flow: wrap" class="pagination justify-content-center">
+          {% if Paginator.has_previous %}
+          <li class="page-item">
+            <a class="page-link" href="?page=1">&laquo; First</a>
+          </li>
+          <li class="page-item">
+            <a
+              class="page-link"
+              href="?page={{ Paginator.previous_page_number }}"
+              >Previous</a
+            >
+          </li>
+
+          {% endif %} {% for page in MaxPageNumber %}
+          <li class="page-item" id="page {{page}}">
+            <a class="page-link" href="?page={{page}}">{{page}}</a>
+          </li>
+
+          {% endfor %} {% if Paginator.has_next %}
+          <li class="page-item">
+            <a class="page-link" href="?page={{ Paginator.next_page_number }}"
+              >Next</a
+            >
+          </li>
+          <li class="page-item">
+            <a
+              class="page-link"
+              href="?page={{ Paginator.paginator.num_pages }}"
+              >Last &raquo;</a
+            >
+          </li>
+          {% endif %}
+        </ul>
+      </nav>
+    </div>
+    <script>
+      var page = document.getElementById("page " + {{Paginator.number}} );
+      page.className = "page-item active"
+    </script>
+  </body>
+  {% endblock %}
+</html>
