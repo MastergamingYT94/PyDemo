@@ -12,18 +12,11 @@ pylint-django = "*"
 django-cors-headers = "*"
 djangorestframework = "*"
 dj-database-url = "*"
-<<<<<<< HEAD
 pillow = "*"
 cloudinary = "*"
 pycryptodome = "*"
 authlib = "*"
 cryptography = "*"
-=======
-psycopg2-binary = "*"
-mysqlclient = "*"
-pillow = "*"
-cloudinary = "*"
->>>>>>> 8bd5679f0915566d6e588b99e4c05e916e2e99f6
 
 [dev-packages]
 pylint = "*"

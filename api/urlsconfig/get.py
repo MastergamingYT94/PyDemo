@@ -1,10 +1,6 @@
 from api.get import get
 from django.urls import path
-<<<<<<< HEAD
 from api.get.items import productRating, assignCategory, cartItem, checkProduct, loginAsGuest, user, orders, ordersShipping, ordersMaster, shippingDetails
-=======
-from api.get.items import assignCategory, cartItem, checkProduct, loginAsGuest, productRating, user, orders, ordersShipping, ordersMaster, shippingDetails
->>>>>>> 8bd5679f0915566d6e588b99e4c05e916e2e99f6
 
 urlpatterns = [
     path('assignCategory/<int:MainCategory>',

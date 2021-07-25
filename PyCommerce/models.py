@@ -117,11 +117,7 @@ class products(models.Model):
     Image = models.ImageField(null=True, blank=True)
     Image2 = models.ImageField(null=True, blank=True)
     Image3 = models.ImageField(null=True, blank=True)
-<<<<<<< HEAD
     Image4 = CloudinaryField('image', null=True, blank=True)
-=======
-    Image4 = CloudinaryField('image')
->>>>>>> 8bd5679f0915566d6e588b99e4c05e916e2e99f6
     Description = models.TextField(max_length=2550, null=True)
     BrandId = models.ForeignKey(
         brands, on_delete=models.DO_NOTHING,  db_column='BrandId', db_constraint=False)
@@ -129,11 +125,7 @@ class products(models.Model):
         categories, on_delete=models.DO_NOTHING,  db_column='CategoryId', db_constraint=False)
 
     def __str__(self):
-<<<<<<< HEAD
         return str(self.NameL)
-=======
-        return self.NameL
->>>>>>> 8bd5679f0915566d6e588b99e4c05e916e2e99f6
 
 
 class vendorPriceLists(models.Model):
