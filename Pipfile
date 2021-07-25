@@ -1,0 +1,26 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+requests = "*"
+django = "*"
+whitenoise = "*"
+gunicorn = "*"
+pylint-django = "*"
+django-cors-headers = "*"
+djangorestframework = "*"
+dj-database-url = "*"
+pillow = "*"
+cloudinary = "*"
+pycryptodome = "*"
+authlib = "*"
+cryptography = "*"
+
+[dev-packages]
+pylint = "*"
+autopep8 = "*"
+
+[requires]
+python_version = "3.9"
