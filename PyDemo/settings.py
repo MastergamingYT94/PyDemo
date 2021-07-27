@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os
-
+import dj_database_url
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -26,13 +26,10 @@ SECRET_KEY = 'django-insecure-x2s7sdu)nsk=9xab9t2ylho5%n%0nvbme8p=2&dl!6$3ny!&mh
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['http://localhost:4200',
-                 '127.0.0.1', 'pycommerceapp.herokuapp.com', 'https://angularpycommerce.herokuapp.com']
+ALLOWED_HOSTS = ['pycommerceapp.herokuapp.com',
+                 'https://angularpycommerce.herokuapp.com']
 CORS_ORIGIN_ALLOW_ALL = False
-CORS_ORIGIN_WHITELIST = (
-    'http://localhost:4200',
-    'https://angularpycommerce.herokuapp.com'
-)
+CORS_ORIGIN_WHITELIST = ('https://angularpycommerce.herokuapp.com')
 
 OPTIONS = {
     'timeout': 20,
@@ -98,7 +95,7 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
+DATABASES['default'].update(dj_database_url.config())
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
