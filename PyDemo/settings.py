@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os
-import cloudinary
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -74,7 +73,7 @@ ROOT_URLCONF = 'PyDemo.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, "PyCommerce/template")],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -149,10 +148,11 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "PyCommerce/static"),
 )
+MEDIA_URL = 'images/'
 
-cloudinary.config(
-    cloud_name="pycommerce",
-    api_key="544135185544278",
-    api_secret="V_TChoN8UXBeZ7lS58cZDYxAjWI",
-    secure=True
-)
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'pycommerce',
+    'API_KEY': '544135185544278',
+    'API_SECRET': 'V_TChoN8UXBeZ7lS58cZDYxAjWI',
+}
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'

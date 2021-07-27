@@ -1,3 +1,4 @@
+from api.encrypt import Encrypt
 from PyCommerce.models import users
 from django.http.response import JsonResponse
 from abc import ABC, abstractmethod
@@ -17,7 +18,8 @@ class User():
             Serializer = usersResource(data, many=True)
             data = {k: v for item in Serializer.data for k,
                     v in item.items()}
-            return JsonResponse(data, safe=False)
+            data = Encrypt().encrypt(data)
+            return JsonResponse({'token': data['token'], 'key': data['key']}, safe=False)
 
 
 get_user = User().get_user

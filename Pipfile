@@ -17,6 +17,7 @@ cloudinary = "*"
 pycryptodome = "*"
 authlib = "*"
 cryptography = "*"
+dj3-cloudinary-storage = "*"
 
 [dev-packages]
 pylint = "*"

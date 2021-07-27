@@ -1,5 +1,4 @@
 from django.db import models
-from cloudinary.models import CloudinaryField
 
 
 class brands(models.Model):
@@ -20,7 +19,7 @@ class categories(models.Model):
     NameA = models.TextField(max_length=2550, null=True)
     NameL = models.TextField(max_length=2550)
     Level = models.IntegerField()
-    ImageUrl = models.TextField(max_length=2550, null=True)
+    ImageUrl = models.ImageField(null=True, blank=True)
 
     def __str__(self):
         return self.NameL
@@ -90,7 +89,7 @@ class users(models.Model):
     Password = models.TextField(max_length=2550)
     Address1 = models.TextField(max_length=2550, null=True)
     Address2 = models.TextField(max_length=2550, null=True)
-    Phone = models.IntegerField(null=True)
+    Phone = models.TextField(max_length=11, null=True)
     City = models.TextField(max_length=2550, null=True)
 
     def __str__(self):
@@ -117,7 +116,7 @@ class products(models.Model):
     Image = models.ImageField(null=True, blank=True)
     Image2 = models.ImageField(null=True, blank=True)
     Image3 = models.ImageField(null=True, blank=True)
-    Image4 = CloudinaryField('image', null=True, blank=True)
+    Image4 = models.ImageField(null=True, blank=True)
     Description = models.TextField(max_length=2550, null=True)
     BrandId = models.ForeignKey(
         brands, on_delete=models.DO_NOTHING,  db_column='BrandId', db_constraint=False)

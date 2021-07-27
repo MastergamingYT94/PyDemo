@@ -3,7 +3,8 @@ from PyCommerce import models
 from django.http.response import JsonResponse
 from abc import ABC, abstractmethod
 from api import resources
-from api.encrypt import Encrypt
+from api.encrypt import encrypt
+from api.decrypt import decrypt
 
 
 class IGetAllData(ABC):
@@ -18,7 +19,7 @@ class AllData():
             result = Model.__getattribute__(models, model)()
             resource = Model.__getattribute__(resources, model + 'Resource')
             Serializer = resource(type(result).objects.all(), many=True)
-            data = Encrypt().encrypt(Serializer.data)
+            data = encrypt(Serializer.data)
             return JsonResponse({'token': data['token'], 'key': data['key']}, safe=False)
 
 

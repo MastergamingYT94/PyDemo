@@ -5,4 +5,4 @@ from django.shortcuts import render
 
 
 def welcome(request):
-    return HttpResponse('')
+    return render(request, 'welcome.html')

@@ -1,4 +1,3 @@
-from PyDemo.settings import SITE_URL
 from PyCommerce.models import brands, cartTransactions, cartTransactionMasters, categories, countries, getHomeProducts, inventoryBalances, inventoryDetails, orderMasters, orderStatus, orders, productSpecifications, productStoreRatings, products, shippingAgents, shippingAgentUsers, shippingDetails, specificationValueCount, specifications, starPercent, storeShippingAgents, stores, transactionTypes, users, vendorPriceLists, vendors
 from rest_framework import serializers
 from django.db.models import Sum
@@ -59,7 +58,7 @@ class cartItemsResource(serializers.ModelSerializer):
             id=obj.ProductId.id)]
         for item in product:
             if item:
-                Image = SITE_URL + item.url
+                Image = item.url
         return Image
 
     def product_img2(self, obj):
@@ -68,7 +67,7 @@ class cartItemsResource(serializers.ModelSerializer):
             id=obj.ProductId.id)]
         for item in product:
             if item:
-                Image = SITE_URL + item.url
+                Image = item.url
         return Image
 
     def product_img3(self, obj):
@@ -77,7 +76,7 @@ class cartItemsResource(serializers.ModelSerializer):
             id=obj.ProductId.id)]
         for item in product:
             if item:
-                Image = SITE_URL + item.url
+                Image = item.url
         return Image
 
     def product_img4(self, obj):
@@ -86,7 +85,7 @@ class cartItemsResource(serializers.ModelSerializer):
             id=obj.ProductId.id)]
         for item in product:
             if item:
-                Image = SITE_URL + item.url
+                Image = item.url
         return Image
 
     def product_price(self, obj):
@@ -131,7 +130,7 @@ class cartResource(serializers.ModelSerializer):
     def product_img(self, obj):
         Image = None
         if obj.ProductId.Image:
-            Image = SITE_URL + obj.ProductId.Image.url
+            Image = obj.ProductId.Image.url
         return Image
 
     def product_desc(self, obj):
@@ -286,7 +285,7 @@ class ordersResource(serializers.ModelSerializer):
     def product_img(self, obj):
         Image = None
         if obj.ProductId.Image:
-            Image = SITE_URL + obj.ProductId.Image.url
+            Image = obj.ProductId.Image.url
         return Image
 
     def store_name(self, obj):
@@ -374,6 +373,7 @@ class productsResource(serializers.ModelSerializer):
     ImageUrl = serializers.SerializerMethodField('img_url')
     ImageUrl2 = serializers.SerializerMethodField('img2_url')
     ImageUrl3 = serializers.SerializerMethodField('img3_url')
+    ImageUrl4 = serializers.SerializerMethodField('img4_url')
 
     def img(self, obj):
         return obj.Image.name
@@ -385,30 +385,36 @@ class productsResource(serializers.ModelSerializer):
         return obj.Image3.name
 
     def img4(self, obj):
-        return obj.Image4
+        return obj.Image4.name
 
     def img_url(self, obj):
         Image = None
         if obj.Image:
-            Image = SITE_URL + obj.Image.url
+            Image = obj.Image.url
         return Image
 
     def img2_url(self, obj):
         Image = None
         if obj.Image2:
-            Image = SITE_URL + obj.Image2.url
+            Image = obj.Image2.url
         return Image
 
     def img3_url(self, obj):
         Image = None
         if obj.Image3:
-            Image = SITE_URL + obj.Image3.url
+            Image = obj.Image3.url
+        return Image
+
+    def img4_url(self, obj):
+        Image = None
+        if obj.Image3:
+            Image = obj.Image4.url
         return Image
 
     class Meta:
         model = products
         fields = ['id', 'NameA', 'NameL', 'Image', 'Image2', 'Image3',
-                  'Image4', 'ImageUrl', 'ImageUrl2', 'ImageUrl3',
+                  'Image4', 'ImageUrl', 'ImageUrl2', 'ImageUrl3', 'ImageUrl4',
                   'CategoryId', 'BrandId', 'Description']
 
 
@@ -591,7 +597,7 @@ class getHomeProductsResource(serializers.ModelSerializer):
         Image = None
         if obj.ProductId.Image:
             if obj.ProductId.Image.url:
-                Image = SITE_URL + obj.ProductId.Image.url
+                Image = obj.ProductId.Image.url
         return Image
 
     class Meta:

@@ -1,6 +1,7 @@
 from PyCommerce.models import categories
 from django.http.response import JsonResponse
 from abc import ABC, abstractmethod
+from api.encrypt import encrypt
 
 
 class IAssignCategories(ABC):

@@ -3,6 +3,7 @@ from django.core.paginator import Paginator
 from django.http.response import JsonResponse
 from api.resources import getHomeProductsResource
 from PyCommerce.models import getHomeProducts, productSpecifications, categories
+from api.encrypt import encrypt
 import math
 
 
@@ -47,7 +48,7 @@ class GetHomeProducts(IGetHomeProducts):
 
         serializer = getHomeProductsResource(
             products, many=True)
-        return JsonResponse(serializer.data, safe=False)
+        return JsonResponse(encrypt(serializer.data), safe=False)
 
     def get_searched_products(self, request, search='null'):
         if request.method == 'GET':
@@ -68,7 +69,7 @@ class GetHomeProducts(IGetHomeProducts):
                             List.append(
                                 {'ProductName': p[1], 'CategoryName': c[1]})
 
-        return JsonResponse(List[:10], safe=False)
+        return JsonResponse(encrypt(List[:10]), safe=False)
 
     def get_max_page(self, request, specValue='null', search='null', categoryId=0):
         if request.method == 'GET':
@@ -94,8 +95,7 @@ class GetHomeProducts(IGetHomeProducts):
             List = []
             for page in range(1, maxPageNumber + 1):
                 List.append(page)
-
-            return JsonResponse(List, safe=False)
+            return JsonResponse(encrypt(List), safe=False)
 
 
 get_home_products = GetHomeProducts().get_home_products
