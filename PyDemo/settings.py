@@ -30,7 +30,7 @@ ALLOWED_HOSTS = ['pycommerceapp.herokuapp.com',
                  'https://angularpycommerce.herokuapp.com']
 CORS_ORIGIN_ALLOW_ALL = False
 CORS_ORIGIN_WHITELIST = (
-    'https://angularpycommerce.herokuapp.com', 'angularpycommerce.herokuapp.com')
+    'https://angularpycommerce.herokuapp.com')
 
 OPTIONS = {
     'timeout': 20,
