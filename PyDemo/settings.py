@@ -27,10 +27,15 @@ SECRET_KEY = 'django-insecure-x2s7sdu)nsk=9xab9t2ylho5%n%0nvbme8p=2&dl!6$3ny!&mh
 DEBUG = True
 
 ALLOWED_HOSTS = ['pycommerceapp.herokuapp.com',
-                 'https://angularpycommerce.herokuapp.com', 'https://pycommerceapp.netlify.app']
+                 'https://angularpycommerce.herokuapp.com',
+                 'https://pycommerceapp.netlify.app',
+                 'https://pycommerceapp.web.app']
 CORS_ORIGIN_ALLOW_ALL = False
 CORS_ORIGIN_WHITELIST = (
-    'https://angularpycommerce.herokuapp.com', 'http://angularpycommerce.herokuapp.com', 'https://pycommerceapp.netlify.app')
+    'https://angularpycommerce.herokuapp.com',
+    'https://pycommerceapp.netlify.app',
+    'https://pycommerceapp.web.app'
+)
 
 OPTIONS = {
     'timeout': 20,
