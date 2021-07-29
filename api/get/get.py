@@ -3,7 +3,7 @@ from django.http.response import JsonResponse
 from PyCommerce import models
 from abc import ABC, abstractmethod
 from api import resources
-from api.encrypt import Encrypt
+from api.encrypt import encrypt
 
 
 class IGetData(ABC):
@@ -21,7 +21,7 @@ class Data():
                 type(result).objects.filter(id=id), many=True)
             data = {k: v for item in Serializer.data for k,
                     v in item.items()}
-            data = Encrypt().encrypt(data)
+            data = encrypt(data)
             return JsonResponse({'token': data['token'], 'key': data['key']}, safe=False)
 
 

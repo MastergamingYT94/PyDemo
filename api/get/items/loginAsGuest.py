@@ -2,6 +2,7 @@ from PyCommerce.models import users
 from django.http.response import JsonResponse
 from abc import ABC, abstractmethod
 from api.resources import usersResource
+from api.encrypt import encrypt
 
 
 class ILoginAsGuest(ABC):
@@ -17,7 +18,7 @@ class LoginAsGuest():
             Serializer = usersResource(data, many=True)
             data = {k: v for item in Serializer.data for k,
                     v in item.items()}
-            return JsonResponse(data, safe=False)
+            return JsonResponse(encrypt(data), safe=False)
 
 
 login_as_guest = LoginAsGuest().login_as_guest

@@ -25,7 +25,7 @@ class UserAuth():
             for user in count:
                 with open('key.json', "r") as json_file:
                     key = json.load(json_file)['key']
-                    password = decrypt(user, key)
+                    password = decrypt(user, key, 'RSA')
                     if result['Password'] == password:
                         data = users.objects.filter(Email=result['Email'])
                         Serializer = usersResource(data, many=True)

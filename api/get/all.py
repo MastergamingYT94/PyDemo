@@ -4,7 +4,6 @@ from django.http.response import JsonResponse
 from abc import ABC, abstractmethod
 from api import resources
 from api.encrypt import encrypt
-from api.decrypt import decrypt
 
 
 class IGetAllData(ABC):

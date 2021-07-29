@@ -27,7 +27,7 @@ class RegisterUser():
                 password = result['Password']
                 with open('key.json') as json_file:
                     key = json.load(json_file)['key']
-                    token = encrypt(password, key, False)
+                    token = encrypt(password, 'RSA', key, False)
                     result['Password'] = token['token']
                 user = users.objects.create(**result)
                 user = users.objects.filter(id=user.id)
