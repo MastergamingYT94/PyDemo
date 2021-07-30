@@ -14,7 +14,7 @@ class IGetMainCategories(ABC):
 class MainCategories():
     def get_main_categories(self, request):
         if request.method == 'GET':
-            data = categories.objects.filter(Level=1)
+            data = categories.objects.filter(Level=1).order_by('id')
             Serializer = categoriesResource(data, many=True)
             return JsonResponse(encrypt(Serializer.data), safe=False)
 
