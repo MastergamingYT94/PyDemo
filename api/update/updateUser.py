@@ -20,7 +20,7 @@ class updateUser():
             password = data['Password']
             with open('key.json') as json_file:
                 key = json.load(json_file)['key']
-                token = encrypt(password, 'RSA', key, False)
+                token = encrypt(password, 'AES', key, False)
                 data['Password'] = token['token']
             users.objects.filter(id=id).update(**data)
             return HttpResponse(request)
