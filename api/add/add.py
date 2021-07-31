@@ -19,7 +19,7 @@ class addData():
             data = json.loads(request.body)
             result = Model.__getattribute__(models, model)()
             type(result).objects.create(**data)
-            return HttpResponse('request')
+            return HttpResponse(request)
 
 
 add_data = addData().add
