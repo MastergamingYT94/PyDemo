@@ -145,17 +145,15 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
+DATA_UPLOAD_MAX_MEMORY_SIZE = 5242880
 STATIC_ROOT = os.path.join(BASE_DIR, "PyCommerce/")
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "PyCommerce/static"),
 )
-MEDIA_URL = 'images/'
-
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': 'pycommerce',
     'API_KEY': '544135185544278',
-    'API_SECRET': 'V_TChoN8UXBeZ7lS58cZDYxAjWI',
+    'API_SECRET': 'V_TChoN8UXBeZ7lS58cZDYxAjWI'
 }
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
