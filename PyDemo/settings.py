@@ -151,6 +151,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "PyCommerce/static"),
 )
+MEDIA_URL = 'images/'
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': 'pycommerce',
     'API_KEY': '544135185544278',
