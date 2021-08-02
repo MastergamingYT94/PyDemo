@@ -1,7 +1,7 @@
 from django.db import router
 from django.urls import path
 from api.add import deliverOrder, deliveryNotes, user
-from ..add import add, cart, cartItem, authUser, order, rateProduct, copyProSpec
+from ..add import add, cart, cartItem, authUser, order, rateProduct, copyProSpec, product
 from ..update import quantity, update, updateUser, updateProduct
 from ..delete import deleteCart, deleteItem
 
@@ -16,6 +16,7 @@ urlpatterns = [
     path('rateProduct', rateProduct.rate_product),
     path('copyProSpec/<int:ProductSpecId>/<int:ProductId>/<int:CategoryId>',
          copyProSpec.copy_product_specifications),
+    path('addProduct', product.add_product),
 
     path('authUser', authUser.authenticate_user),
     path('registerUser', user.register_user),
