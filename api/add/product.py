@@ -19,7 +19,7 @@ class AddProduct():
         category = request.POST['CategoryId']
         description = request.POST['Description']
         product = products.objects.create(
-            NameL=name, BrandId=brand, CategoryId=category, Description=description)
+            NameL=name, BrandId_id=brand, CategoryId_id=category, Description=description)
 
         img = request.FILES.get('Image')
         img2 = request.FILES.get('Image2')
