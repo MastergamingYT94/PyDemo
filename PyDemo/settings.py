@@ -28,7 +28,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['https://angularpycommerce.herokuapp.com',
                  'https://pycommerceapp.netlify.app',
-                 'https://pycommerceapp.web.app']
+                 'https://pycommerceapp.web.app', ]
 CORS_ORIGIN_ALLOW_ALL = False
 CORS_ORIGIN_WHITELIST = (
     'https://angularpycommerce.herokuapp.com',
