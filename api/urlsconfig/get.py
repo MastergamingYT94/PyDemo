@@ -1,6 +1,6 @@
 from api.get import get
 from django.urls import path
-from api.get.items import productRating, assignCategory, cartItem, checkProduct, loginAsGuest, user, orders, ordersShipping, ordersMaster, shippingDetails
+from api.get.items import productRating, assignCategory, cartItem, checkProduct, checkProductQty, loginAsGuest, user, orders, ordersShipping, ordersMaster, shippingDetails
 
 urlpatterns = [
     path('assignCategory/<int:MainCategory>',
@@ -10,6 +10,8 @@ urlpatterns = [
     path('user/<int:UserId>', user.get_user),
     path('checkProduct/<int:StoreId>/<int:ProductId>',
          checkProduct.check_product_exists),
+    path('checkProductQuantity/<int:StoreId>/<int:ProductId>',
+         checkProductQty.check_product_quantity),
     path('loginAsGuest', loginAsGuest.login_as_guest),
 
     path('orders/<userId>', orders.get_orders),

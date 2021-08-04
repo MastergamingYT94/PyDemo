@@ -200,10 +200,21 @@ class cartResource(serializers.ModelSerializer):
 
 
 class categoriesResource(serializers.ModelSerializer):
+    ImageUrl = serializers.SerializerMethodField('image_url')
+    ImageName = serializers.SerializerMethodField('image_name')
+
+    def image_url(self, obj):
+        if obj.ImageUrl:
+            return obj.ImageUrl.url
+
+    def image_name(self, obj):
+        if obj.ImageUrl:
+            return obj.ImageUrl.name
+
     class Meta:
         model = categories
         fields = ['id', 'NameA', 'NameL',
-                  'Level', 'ImageUrl', 'MainCategoryId']
+                  'Level', 'ImageUrl', 'ImageName', 'MainCategoryId']
 
 
 class countriesResource(serializers.ModelSerializer):
@@ -221,6 +232,7 @@ class inventoryBalancesResource(serializers.ModelSerializer):
 class inventoryDetailsResource(serializers.ModelSerializer):
     StoreName = serializers.SerializerMethodField('storeName')
     ProductName = serializers.SerializerMethodField('productName')
+    TransTypeName = serializers.SerializerMethodField('trans_type')
 
     def storeName(self, obj):
         return obj.StoreId.NameL
@@ -228,10 +240,13 @@ class inventoryDetailsResource(serializers.ModelSerializer):
     def productName(self, obj):
         return obj.ProductId.NameL
 
+    def trans_type(self, obj):
+        return obj.TransType.NameL
+
     class Meta:
         model = inventoryDetails
         fields = ['id', 'StoreId', 'ProductId',
-                  'StoreName', 'ProductName', 'Quantity']
+                  'StoreName', 'ProductName', 'Quantity', 'TransTypeName', 'TransType']
 
 
 class orderMastersResource(serializers.ModelSerializer):
@@ -374,6 +389,8 @@ class productsResource(serializers.ModelSerializer):
     ImageUrl2 = serializers.SerializerMethodField('img2_url')
     ImageUrl3 = serializers.SerializerMethodField('img3_url')
     ImageUrl4 = serializers.SerializerMethodField('img4_url')
+    CategoryName = serializers.SerializerMethodField('category_name')
+    BrandName = serializers.SerializerMethodField('brand_name')
 
     def img(self, obj):
         return obj.Image.name
@@ -411,18 +428,28 @@ class productsResource(serializers.ModelSerializer):
             Image = obj.Image4.url
         return Image
 
+    def category_name(self, obj):
+        return obj.CategoryId.NameL
+
+    def brand_name(self, obj):
+        return obj.BrandId.NameL
+
     class Meta:
         model = products
         fields = ['id', 'NameA', 'NameL', 'Image', 'Image2', 'Image3',
                   'Image4', 'ImageUrl', 'ImageUrl2', 'ImageUrl3', 'ImageUrl4',
-                  'CategoryId', 'BrandId', 'Description']
+                  'CategoryId', 'CategoryName', 'BrandId', 'BrandName', 'Description']
 
 
 class productSpecificationsResource(serializers.ModelSerializer):
     ProductName = serializers.SerializerMethodField('product_name')
+    SpecificationName = serializers.SerializerMethodField('specification_name')
 
     def product_name(self, obj):
         return obj.ProductId.NameL
+
+    def specification_name(self, obj):
+        return obj.SpecificationId.NameL
 
     class Meta:
         model = productSpecifications

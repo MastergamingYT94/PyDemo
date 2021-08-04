@@ -20,18 +20,6 @@ class addData():
             data = json.loads(request.body)
             result = Model.__getattribute__(models, model)()
             type(result).objects.create(**data)
-            if model == "inventoryDetails":
-                checkExist = models.inventoryBalances.objects.filter(
-                    ProductId=data["ProductId_id"], StoreId=data["StoreId_id"]).count()
-                if checkExist == 0:
-                    models.inventoryBalances.objects.create(
-                        ProductId_id=data["ProductId_id"], StoreId_id=data["StoreId_id"], QuantityBalance=data["Quantity"])
-                else:
-                    quantityIn = models.inventoryDetails.objects.filter(
-                        ProductId=data["ProductId_id"], StoreId=data["StoreId_id"]).aggregate(Sum('Quantity'))
-                    models.inventoryBalances.objects.filter(
-                        ProductId=data["ProductId_id"], StoreId=data["StoreId_id"]).update(QuantityBalance=quantityIn["Quantity__sum"])
-
             return HttpResponse(request)
 
 

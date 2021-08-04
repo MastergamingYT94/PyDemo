@@ -199,6 +199,8 @@ class inventoryDetails(models.Model):
     ProductId = models.ForeignKey(
         products, on_delete=models.DO_NOTHING,  db_column='ProductId', db_constraint=False)
     Quantity = models.FloatField(null=False)
+    TransType = models.ForeignKey(transactionTypes, on_delete=models.DO_NOTHING,
+                                  db_column='TransType', db_constraint=False, default=1)
 
 
 class cartTransactions(models.Model):

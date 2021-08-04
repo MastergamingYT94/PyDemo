@@ -5,7 +5,7 @@ from django.http.response import HttpResponse
 from PyCommerce.models import products
 
 
-class IUpdateData(ABC):
+class IUpdateProduct(ABC):
     @abstractmethod
     def update():
         pass

@@ -1,4 +1,5 @@
-from PyCommerce.models import cartTransactions, orderMasters, orders
+from PyCommerce.models import cartTransactions, inventoryDetails, orderMasters, orders
+from api.update.invBalance import update_inv_balance
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.renderers import JSONRenderer
 from django.http.response import JsonResponse
@@ -35,6 +36,12 @@ class AddOrder():
                         TotalPrice=data['TotalPricePerItem']*data['Quantity'],
                         Latitude=data['Latitude'], Longitude=data['Longitude'],
                         isDelivered=False, DeliveredByUserId_id=None)
+
+                    inventoryDetails.objects.create(
+                        ProductId_id=data['ProductId'], StoreId_id=data['StoreId'], Quantity=data['Quantity'], TransType_id=2)
+
+                    update_inv_balance(data)
+
                 order = master.id
         return JsonResponse(order, safe=False)
 
