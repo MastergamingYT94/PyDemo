@@ -39,7 +39,8 @@ class AddOrder():
 
                     inventoryDetails.objects.create(
                         ProductId_id=data['ProductId'], StoreId_id=data['StoreId'], Quantity=data['Quantity'], TransType_id=2)
-
+                    data['StoreId_id'] = data['StoreId']
+                    data['ProductId_id'] = data['ProductId']
                     update_inv_balance(data)
 
                 order = master.id

@@ -15,9 +15,9 @@ class UpdateInvBalance():
     @csrf_exempt
     def update_inv_balance(self, data):
         invDetail = inventoryDetails.objects.filter(
-            ProductId=data["ProductId"], StoreId=data["StoreId"])
+            ProductId=data["ProductId_id"], StoreId=data["StoreId_id"])
         invBalance = inventoryBalances.objects.filter(
-            ProductId=data["ProductId"], StoreId=data["StoreId"])
+            ProductId=data["ProductId_id"], StoreId=data["StoreId_id"])
         if invBalance.count() > 0:
             quantityIn = invDetail.filter(
                 TransType_id=1).aggregate(Sum('Quantity'))
@@ -28,7 +28,7 @@ class UpdateInvBalance():
             invBalance.update(QuantityBalance=quantityBalance)
         else:
             inventoryBalances.objects.create(
-                ProductId_id=data["ProductId"], StoreId_id=data["StoreId"], QuantityBalance=data["Quantity"])
+                ProductId_id=data["ProductId_id"], StoreId_id=data["StoreId_id"], QuantityBalance=data["Quantity"])
         return HttpResponse(True)
 
 
