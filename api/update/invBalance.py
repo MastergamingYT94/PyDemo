@@ -23,8 +23,17 @@ class UpdateInvBalance():
                 TransType_id=1).aggregate(Sum('Quantity'))
             quantityOut = invDetail.filter(
                 TransType_id=2).aggregate(Sum('Quantity'))
-            quantityBalance = float(
-                quantityIn['Quantity__sum']) - float(quantityOut['Quantity__sum'])
+            if quantityIn['Quantity__sum'] != None:
+                quantityIn = float(quantityIn['Quantity__sum'])
+            else:
+                quantityIn = 0
+
+            if quantityOut['Quantity__sum'] != None:
+                quantityOut = float(quantityOut['Quantity__sum'])
+            else:
+                quantityOut = 0
+
+            quantityBalance = quantityIn - quantityOut
             invBalance.update(QuantityBalance=quantityBalance)
         else:
             inventoryBalances.objects.create(
