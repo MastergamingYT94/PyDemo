@@ -13,9 +13,11 @@ class IUpdateInventoryBalance(ABC):
 
 class UpdateInvBalance():
     @csrf_exempt
-    def update_inv_balance(self, data):
+    def update_inv_balance(self, data, id=0):
         invDetail = inventoryDetails.objects.filter(
             ProductId=data["ProductId_id"], StoreId=data["StoreId_id"])
+        if id > 0:
+            invDetail = invDetail.exclude(id=id)
         invBalance = inventoryBalances.objects.filter(
             ProductId=data["ProductId_id"], StoreId=data["StoreId_id"])
         if invBalance.count() > 0:
