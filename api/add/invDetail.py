@@ -1,6 +1,6 @@
 from django.views.decorators.csrf import csrf_exempt
 from abc import ABC, abstractmethod
-from django.http.response import HttpResponse
+from django.http.response import JsonResponse
 from PyCommerce.models import inventoryDetails
 from api.update.invBalance import update_inv_balance
 from api.update.checkBalance import check_inv_balance
@@ -31,7 +31,7 @@ class addInvDetail():
             else:
                 inventoryDetails.objects.create(**data)
                 update_inv_balance(data)
-            return HttpResponse(response)
+            return JsonResponse(response, safe=False)
 
 
 add_inv_detail = addInvDetail().add_inv_detail
