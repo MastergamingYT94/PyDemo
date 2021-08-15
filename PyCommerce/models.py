@@ -241,7 +241,7 @@ class orders(models.Model):
     StoreId = models.ForeignKey(
         stores, db_column='StoreId', on_delete=models.DO_NOTHING, db_constraint=False)
     MasterId = models.ForeignKey(
-        cartTransactionMasters, db_column='MasterId', on_delete=models.DO_NOTHING, db_constraint=False)
+        orderMasters, db_column='MasterId', on_delete=models.DO_NOTHING, db_constraint=False)
     UserId = models.ForeignKey(
         users, db_column='UserId', on_delete=models.DO_NOTHING, db_constraint=False)
     ShippingAgentId = models.ForeignKey(
