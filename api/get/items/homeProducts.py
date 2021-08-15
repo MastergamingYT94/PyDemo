@@ -54,7 +54,7 @@ class GetHomeProducts(IGetHomeProducts):
         if request.method == 'GET':
             List = []
             if search != 'null' or search != None:
-                products = getHomeProducts.objects.all().filter(ProductName__contains=search)
+                products = getHomeProducts.objects.all().filter(ProductName__icontains=search)
                 categoryIds = [product for product in products.values_list(
                     'CategoryId', flat=True)]
                 Categories = categories.objects.all().filter(id__in=categoryIds)
