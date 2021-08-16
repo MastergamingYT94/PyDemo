@@ -16,10 +16,10 @@ class DeliverOrder():
         if request.method == "POST":
             Orders = orders.objects.filter(id=OrderId)
             Orders.update(isDelivered=True, DeliveredByUserId_id=UserId)
-            count = orders.objects.filter(id=OrderId, MasterId__in=[
-                                          item.MasterId.id for item in Orders]).count()
-            delivered = orders.objects.filter(isDelivered=True).count()
-            if (delivered / count) == 1:
+            count = orders.objects.filter(MasterId__in=[
+                                          item.MasterId.id for item in Orders])
+            delivered = count.filter(isDelivered=True)
+            if (delivered.count() / count.count()) == 1:
                 orderMasters.objects.filter(
                     id__in=[item.MasterId.id for item in Orders]).update(OrderStatusId_id=2)
 
