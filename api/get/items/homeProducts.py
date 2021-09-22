@@ -1,5 +1,4 @@
 from abc import ABC, abstractmethod
-from django.core.paginator import Paginator
 from django.http.response import JsonResponse
 from api.resources import getHomeProductsResource
 from PyCommerce.models import getHomeProducts, productSpecifications, categories
