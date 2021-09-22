@@ -39,13 +39,7 @@ class GetHomeProducts(IGetHomeProducts):
             if categoryId != 0:
                 homeProducts = homeProducts.filter(CategoryId=categoryId)
 
-        maxPageNumber = len(homeProducts) / 8
-        maxPageNumber = math.ceil(maxPageNumber) * 10
-
-        paginator = Paginator(homeProducts, 8)
-        pages = paginator.get_page(page)
-        products = pages.object_list
-
+        products = homeProducts[(page - 1) * 8:page * 8]
         serializer = getHomeProductsResource(
             products, many=True)
         return JsonResponse(encrypt(serializer.data), safe=False)
