@@ -508,7 +508,7 @@ class shippingAgentUsersResource(serializers.ModelSerializer):
 
     class Meta:
         model = shippingAgentUsers
-        fields = ['id', 'ShippingAgentId', 'UserName', 'ShippingAgentName']
+        fields = ['id', 'ShippingAgentId', 'UserName', 'ShippingAgentName', 'UserId']
 
 
 class shippingDetailsResource(serializers.ModelSerializer):

@@ -19,11 +19,10 @@ authlib = "*"
 cryptography = "*"
 dj3-cloudinary-storage = "*"
 sjcl = "*"
-psycopg2 = "*"
 
 [dev-packages]
 pylint = "*"
 autopep8 = "*"
 
 [requires]
-python_version = "3.9"
+python_version = "3.11.4"
