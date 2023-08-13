@@ -26,12 +26,7 @@ SECRET_KEY = 'django-insecure-x2s7sdu)nsk=9xab9t2ylho5%n%0nvbme8p=2&dl!6$3ny!&mh
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['https://pycommerce.live',
-                 'pycommerceapp.herokuapp.com',
-                 'https://angularpycommerce.herokuapp.com',
-                 'https://pycommerceapp.netlify.app',
-                 'https://pycommerceapp.web.app',
-                 '127.0.0.1']
+ALLOWED_HOSTS = ['*']
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ORIGIN_WHITELIST = (
     'https://pycommerce.live',
