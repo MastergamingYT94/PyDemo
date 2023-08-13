@@ -100,12 +100,12 @@ WSGI_APPLICATION = 'PyDemo.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'cfmywoqv',
-        'USER': 'cfmywoqv',
-        'PASSWORD': 'BP1rxneB2_MRLosgSBzY3EUbDh_Z0_jR',
-        'HOST': 'bubble.db.elephantsql.com',
-        'PORT': '5432',
+        'URL': os.getenv('postgres://cfmywoqv:BP1rxneB2_MRLosgSBzY3EUbDh_Z0_jR@bubble.db.elephantsql.com/cfmywoqv'),
+        'NAME': os.getenv('cfmywoqv'),
+        'USER': os.getenv('cfmywoqv'),
+        'PASSWORD': os.getenv('BP1rxneB2_MRLosgSBzY3EUbDh_Z0_jR'),
+        'HOST': os.getenv('bubble.db.elephantsql.com'),
+        'PORT': os.getenv('5432'),
         'DISABLE_SERVER_SIDE_CURSORS': True
     }
 }
