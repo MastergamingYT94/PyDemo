@@ -19,6 +19,7 @@ authlib = "*"
 cryptography = "*"
 dj3-cloudinary-storage = "*"
 sjcl = "*"
+psycopg2-binary = "*"
 
 [dev-packages]
 pylint = "*"

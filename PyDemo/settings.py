@@ -100,8 +100,13 @@ WSGI_APPLICATION = 'PyDemo.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'cfmywoqv',
+        'USER': 'cfmywoqv',
+        'PASSWORD': 'BP1rxneB2_MRLosgSBzY3EUbDh_Z0_jR',
+        'HOST': 'bubble.db.elephantsql.com',
+        'PORT': '5432',
+        'DISABLE_SERVER_SIDE_CURSORS': True
     }
 }
 DATABASES['default'].update(dj_database_url.config())
