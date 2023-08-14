@@ -101,7 +101,8 @@ DATABASES = {
         'PASSWORD': os.getenv('BP1rxneB2_MRLosgSBzY3EUbDh_Z0_jR'),
         'HOST': os.getenv('bubble.db.elephantsql.com'),
         'PORT': os.getenv('5432'),
-        'DISABLE_SERVER_SIDE_CURSORS': True
+        'DISABLE_SERVER_SIDE_CURSORS': True,
+        'ENGINE': 'django.db.backends.postgresql',
     }
 }
 DATABASES['default'].update(dj_database_url.config())
