@@ -41,7 +41,7 @@ OPTIONS = {
 
 SITE_ID = 1
 # SITE_URL = "http://127.0.0.1:8000"
-SITE_URL = "http://pycommerce.onrender.com"
+SITE_URL = "https://pycommerce-2faf87903788.herokuapp.com/"
 # Application definition
 
 INSTALLED_APPS = [
@@ -95,12 +95,12 @@ WSGI_APPLICATION = 'PyDemo.wsgi.application'
 
 DATABASES = {
     'default': {
-        'URL': os.getenv('postgres://cfmywoqv:BP1rxneB2_MRLosgSBzY3EUbDh_Z0_jR@bubble.db.elephantsql.com/cfmywoqv'),
-        'NAME': os.getenv('cfmywoqv'),
-        'USER': os.getenv('cfmywoqv'),
-        'PASSWORD': os.getenv('BP1rxneB2_MRLosgSBzY3EUbDh_Z0_jR'),
-        'HOST': os.getenv('bubble.db.elephantsql.com'),
-        'PORT': os.getenv('5432'),
+        'URL': 'postgres://ksuichbwuevllw:33e1bf4599ced57d87ee7cc85ebd2b453164b26fffdcded7906e3b52164b5bb7@ec2-34-202-127-5.compute-1.amazonaws.com:5432/d4gcpdif3m2p2b',
+        'NAME': 'd4gcpdif3m2p2b',
+        'USER': 'ksuichbwuevllw',
+        'PASSWORD': '33e1bf4599ced57d87ee7cc85ebd2b453164b26fffdcded7906e3b52164b5bb7',
+        'HOST': 'ec2-34-202-127-5.compute-1.amazonaws.com',
+        'PORT': '5432',
         'DISABLE_SERVER_SIDE_CURSORS': True,
         'ENGINE': 'django.db.backends.postgresql',
     }
