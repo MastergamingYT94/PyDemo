@@ -300,9 +300,6 @@ class getHomeProducts(models.Model):
     finalProductRating = models.FloatField()
     OutOfFivestring = models.FloatField()
 
-    class Meta:
-        managed = False
-        db_table = "gethomeproducts"
 
 
 class specificationValueCount(models.Model):
@@ -310,10 +307,6 @@ class specificationValueCount(models.Model):
     SpecificationValue = models.TextField(max_length=2550)
     SpecificationCount = models.IntegerField()
     CategoryId = models.IntegerField()
-
-    class Meta:
-        managed = False
-        db_table = "specificationvaluecount"
 
 
 class starPercent(models.Model):
@@ -334,7 +327,3 @@ class starPercent(models.Model):
     averageRating = models.FloatField()
     OutOfFive = models.FloatField()
     allReviewsCount = models.IntegerField()
-
-    class Meta:
-        managed = False
-        db_table = "getstarpercent"
