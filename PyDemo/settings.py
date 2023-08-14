@@ -41,7 +41,7 @@ OPTIONS = {
 
 SITE_ID = 1
 # SITE_URL = "http://127.0.0.1:8000"
-SITE_URL = "http://pycommerceapp.herokuapp.com"
+SITE_URL = "http://pycommerce.onrender.com"
 # Application definition
 
 INSTALLED_APPS = [
@@ -93,27 +93,15 @@ WSGI_APPLICATION = 'PyDemo.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'URL': os.getenv('postgres://cfmywoqv:BP1rxneB2_MRLosgSBzY3EUbDh_Z0_jR@bubble.db.elephantsql.com/cfmywoqv'),
-#         'NAME': os.getenv('cfmywoqv'),
-#         'USER': os.getenv('cfmywoqv'),
-#         'PASSWORD': os.getenv('BP1rxneB2_MRLosgSBzY3EUbDh_Z0_jR'),
-#         'HOST': os.getenv('bubble.db.elephantsql.com'),
-#         'PORT': os.getenv('5432'),
-#         'DISABLE_SERVER_SIDE_CURSORS': True
-#     }
-# }
 DATABASES = {
     'default': {
-        'URL': 'postgres://cfmywoqv:BP1rxneB2_MRLosgSBzY3EUbDh_Z0_jR@bubble.db.elephantsql.com/cfmywoqv',
-        'NAME': 'cfmywoqv',
-        'USER': 'cfmywoqv',
-        'PASSWORD': 'BP1rxneB2_MRLosgSBzY3EUbDh_Z0_jR',
-        'HOST': 'bubble.db.elephantsql.com',
-        'PORT': '5432',
-        'DISABLE_SERVER_SIDE_CURSORS': True,
-        'ENGINE': 'django.db.backends.postgresql'
+        'URL': os.getenv('postgres://cfmywoqv:BP1rxneB2_MRLosgSBzY3EUbDh_Z0_jR@bubble.db.elephantsql.com/cfmywoqv'),
+        'NAME': os.getenv('cfmywoqv'),
+        'USER': os.getenv('cfmywoqv'),
+        'PASSWORD': os.getenv('BP1rxneB2_MRLosgSBzY3EUbDh_Z0_jR'),
+        'HOST': os.getenv('bubble.db.elephantsql.com'),
+        'PORT': os.getenv('5432'),
+        'DISABLE_SERVER_SIDE_CURSORS': True
     }
 }
 DATABASES['default'].update(dj_database_url.config())
