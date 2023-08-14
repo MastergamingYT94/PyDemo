@@ -20,7 +20,6 @@ cryptography = "*"
 dj3-cloudinary-storage = "*"
 sjcl = "*"
 psycopg2-binary = "*"
-django-blog = "*"
 
 [dev-packages]
 pylint = "*"
