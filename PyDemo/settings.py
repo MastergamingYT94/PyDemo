@@ -55,8 +55,7 @@ INSTALLED_APPS = [
     'api.apps.ApiConfig',
     'rest_framework',
     'corsheaders',
-    'cloudinary',
-    'django_blog'
+    'cloudinary'
 ]
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
